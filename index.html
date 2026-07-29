@@ -3,32 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR Electronics Park | Minister & Butterfly Authorized Dealer</title>
+    <title>SR Electronics Park | Authorized Dealer</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6f9; color: #333; padding-bottom: 50px; }
+        
+        /* Header */
         header { background: linear-gradient(135deg, #1b365d, #0d1b2a); color: #fff; padding: 30px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        header h1 { font-size: 2rem; color: #ffb703; margin-bottom: 8px; }
+        header h1 { font-size: 2.1rem; color: #ffb703; margin-bottom: 8px; font-weight: 800; }
         header p.badge { display: inline-block; background: #e63946; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-bottom: 12px; }
-        header p.address { font-size: 0.95rem; color: #e0e1dd; line-height: 1.4; }
+        header p.brands { font-size: 1rem; color: #e0e1dd; margin-bottom: 8px; }
+        header p.address { font-size: 0.95rem; color: #f1faee; opacity: 0.9; }
+
+        /* Top Bar Call Button */
         .cta-bar { background: #25d366; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .cta-bar a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.05rem; }
+        .cta-bar a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        /* Container & Filter */
         .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
         .filter-section { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
-        .filter-btn { background: #fff; border: 2px solid #1b365d; color: #1b365d; padding: 8px 16px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        .filter-btn { background: #fff; border: 2px solid #1b365d; color: #1b365d; padding: 8px 16px; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.2s ease; }
         .filter-btn.active, .filter-btn:hover { background: #1b365d; color: #fff; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; }
-        .card-img { width: 100%; height: 160px; background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+
+        /* Product Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e2e8f0; }
+        .card-img { width: 100%; height: 160px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
         .card-body { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; }
-        .brand-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: #e63946; margin-bottom: 5px; }
-        .product-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; color: #1d3557; }
+        
+        .brand-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 800; padding: 3px 8px; border-radius: 4px; width: fit-content; margin-bottom: 8px; }
+        .tag-ecoplus { background: #e3f2fd; color: #0288d1; }
+        .tag-myone { background: #fff3e0; color: #f57c00; }
+        .tag-lg { background: #fbe9e7; color: #d84315; }
+        .tag-minister { background: #e8f5e9; color: #2e7d32; }
+
+        .product-title { font-size: 1.05rem; font-weight: bold; margin-bottom: 8px; color: #1d3557; line-height: 1.3; }
         .product-spec { font-size: 0.85rem; color: #6c757d; margin-bottom: 15px; line-height: 1.4; }
-        .price-tag { font-size: 1.1rem; font-weight: bold; color: #2b9348; margin-top: auto; margin-bottom: 12px; }
-        .order-btn { display: block; background: #25d366; color: #fff; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 40px; background: #fff; padding: 20px; border-radius: 12px; text-align: center; }
+        
+        .price-box { background: #f1f5f9; padding: 10px; border-radius: 8px; text-align: center; margin-top: auto; margin-bottom: 12px; }
+        .price-text { font-size: 1.1rem; font-weight: bold; color: #0d1b2a; }
+        .price-subtext { font-size: 0.75rem; color: #e63946; font-weight: bold; }
+
+        .order-btn { display: block; background: #25d366; color: #fff; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; }
+        .order-btn:hover { background: #1eb857; }
+
+        /* Features */
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 40px; background: #fff; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
         .feature-item h4 { color: #1b365d; margin-bottom: 5px; }
         .feature-item p { font-size: 0.85rem; color: #6c757d; }
+
         footer { text-align: center; margin-top: 40px; color: #6c757d; font-size: 0.9rem; }
     </style>
 </head>
@@ -36,132 +59,151 @@
 
     <header>
         <h1>SR ELECTRONICS PARK</h1>
-        <p class="badge">অফিসিয়াল এক্সক্লুসিভ ডিলার</p>
-        <p><b>Minister Hi-Tech Park</b> & <b>Butterfly Marketing Limited (LG & EcoPlus)</b></p>
+        <p class="badge">অফিসিয়াল অনুমোদিত শোরুম</p>
+        <p class="brands"><b>EcoPlus</b> (Butterfly) • <b>MyOne Refrigerator</b> • <b>LG</b> • <b>Minister</b></p>
         <p class="address">📍 শাহ সুপার মার্কেট (২য় ও ৩য় তলা), হাটবোয়ালিয়া, আলমডাঙ্গা</p>
     </header>
 
     <div class="cta-bar">
-        <a href="https://wa.me/8801711995940?text=হ্যালো!%20আমি%20SR%20Electronics%20Park%20থেকে%20পণ্য%20সম্পর্কে%20জানতে%20চাই।" target="_blank">
-            💬 সরাসরি হোয়াটসঅ্যাপে অর্ডার করতে ক্লিক করুন: 01711995940
+        <a href="https://wa.me/8801711995940?text=হ্যালো!%20আমি%20SR%20Electronics%20Park%20থেকে%20বিশেষ%20ডিলার%20দাম%20জানতে%20চাই।" target="_blank">
+            💬 সেরা ডিলার ডিসকাউন্ট পেতে হোয়াটসঅ্যাপে মেসেজ দিন: 01711995940
         </a>
     </div>
 
     <div class="container">
         <div class="filter-section">
             <button class="filter-btn active" onclick="filterCategory('all', this)">সব প্রোডাক্ট</button>
-            <button class="filter-btn" onclick="filterCategory('refrigerator', this)">ফ্রিজ</button>
+            <button class="filter-btn" onclick="filterCategory('ecoplus', this)">EcoPlus (সেরা বিক্রি)</button>
+            <button class="filter-btn" onclick="filterCategory('myone', this)">MyOne ফ্রিজ</button>
             <button class="filter-btn" onclick="filterCategory('ac', this)">এসি (AC)</button>
             <button class="filter-btn" onclick="filterCategory('tv', this)">স্মার্ট টিভি</button>
-            <button class="filter-btn" onclick="filterCategory('appliance', this)">হোম অ্যাপ্লায়েন্স</button>
         </div>
 
         <div class="product-grid">
-            <div class="product-card" data-category="refrigerator">
-                <div class="card-img">❄️</div>
-                <div class="card-body">
-                    <span class="brand-tag">Minister Hi-Tech</span>
-                    <div class="product-title">Minister Non-Frost Refrigerator</div>
-                    <div class="product-spec">অনবদ্য ডিজাইন, দ্রুত কুলিং ও ইনভার্টার টেকনোলজি। ১২ বছরের কম্প্রেসার ওয়ারেন্টি।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Minister%20Refrigerators%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="refrigerator">
+            
+            <!-- EcoPlus Refrigerator -->
+            <div class="product-card" data-category="ecoplus">
                 <div class="card-img">🧊</div>
                 <div class="card-body">
-                    <span class="brand-tag">Butterfly - LG</span>
-                    <div class="product-title">LG Smart Inverter Refrigerator</div>
-                    <div class="product-spec">বিদ্যুৎ সাশ্রয়ী, স্পেশাস ডোর বাস্কেট ও হাই-এন্ড ডাবল ডোর সিরিজ।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20LG%20Refrigerator%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
+                    <span class="brand-tag tag-ecoplus">EcoPlus (Butterfly)</span>
+                    <div class="product-title">EcoPlus Direct Cool Refrigerator</div>
+                    <div class="product-spec">সাশ্রয়ী দামে বিদ্যুৎ-সাশ্রয়ী ফ্রিজ, দ্রুত বরফ জমাট বাঁধার প্রযুক্তি এবং লং-লাস্টিং পারফরম্যান্স।</div>
+                    <div class="price-box">
+                        <div class="price-text">শোরুম এক্সক্লুসিভ অফার</div>
+                        <div class="price-subtext">সর্বোত্তম ডিলার মূল্যের জন্য যোগাযোগ করুন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Refrigerator%20এর%20আজকের%20বিশেষ%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
                 </div>
             </div>
 
+            <!-- EcoPlus Washing Machine -->
+            <div class="product-card" data-category="ecoplus">
+                <div class="card-img">🧺</div>
+                <div class="card-body">
+                    <span class="brand-tag tag-ecoplus">EcoPlus (Butterfly)</span>
+                    <div class="product-title">EcoPlus Automatic Washing Machine</div>
+                    <div class="product-spec">স্মার্ট ওয়াশ মোড, কম পানি ও কম বিদ্যুৎ খরচে দ্রুত কাপড় পরিষ্কারের সেরা সমাধান।</div>
+                    <div class="price-box">
+                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-subtext">হোয়াটসঅ্যাপে স্পেশাল ডিসকাউন্ট পাবেন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Washing%20Machine%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                </div>
+            </div>
+
+            <!-- EcoPlus Chest Freezer -->
+            <div class="product-card" data-category="ecoplus">
+                <div class="card-img">❄️</div>
+                <div class="card-body">
+                    <span class="brand-tag tag-ecoplus">EcoPlus (Butterfly)</span>
+                    <div class="product-title">EcoPlus Deep Freezer / Chest Freezer</div>
+                    <div class="product-spec">অত্যাধিক স্টোরেজ ক্যাপাসিটি, শক্তপোক্ত বডি এবং দ্রুত ডিপ কুলিং সিস্টেম।</div>
+                    <div class="price-box">
+                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-subtext">আজকের সেরা রেট জানতে চ্যাট করুন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Deep%20Freezer%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                </div>
+            </div>
+
+            <!-- MyOne Refrigerator 1 -->
+            <div class="product-card" data-category="myone">
+                <div class="card-img">❄️</div>
+                <div class="card-body">
+                    <span class="brand-tag tag-myone">MyOne Refrigerator</span>
+                    <div class="product-title">MyOne V-Series Glass Door Refrigerator</div>
+                    <div class="product-spec">আকর্ষণীয় গ্লাস ডোর ডিজাইন, ১০ বছরের অফিশিয়াল কম্প্রেসার ওয়ারেন্টি ও দ্রুত কুলিং।</div>
+                    <div class="price-box">
+                        <div class="price-text">শোরুম এক্সক্লুসিভ অফার</div>
+                        <div class="price-subtext">হাটবোয়ালিয়ার সেরা দামে নিন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20MyOne%20Glass%20Door%20Refrigerator%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                </div>
+            </div>
+
+            <!-- MyOne Refrigerator 2 -->
+            <div class="product-card" data-category="myone">
+                <div class="card-img">🧊</div>
+                <div class="card-body">
+                    <span class="brand-tag tag-myone">MyOne Refrigerator</span>
+                    <div class="product-title">MyOne Inverter Direct Cool Refrigerator</div>
+                    <div class="product-spec">ইনভার্টার প্রযুক্তি, শতভাগ কপার কনডেন্সার এবং কম ভোল্টেজে চলার ক্ষমতা।</div>
+                    <div class="price-box">
+                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-subtext">সর্বোত্তম মূল্যের জন্য চ্যাট করুন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20MyOne%20Inverter%20Refrigerator%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                </div>
+            </div>
+
+            <!-- AC Category -->
             <div class="product-card" data-category="ac">
                 <div class="card-img">🌬️</div>
                 <div class="card-body">
-                    <span class="brand-tag">Minister Hi-Tech</span>
-                    <div class="product-title">Minister 1.5 Ton Inverter AC</div>
-                    <div class="product-spec">৬০% পর্যন্ত বিদ্যুৎ সাশ্রয়ী, সুপার ফাস্ট কুলিং ও ক্লিন এয়ার ফিল্টার।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Minister%201.5%20Ton%20AC%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
+                    <span class="brand-tag tag-lg">LG / EcoPlus</span>
+                    <div class="product-title">1.5 Ton Inverter Air Conditioner</div>
+                    <div class="product-spec">সুপার ফাস্ট কুলিং, বিদ্যুৎ সাশ্রয়ী ইনভার্টার কম্প্রেসার ও এয়ার ফিল্টারিং।</div>
+                    <div class="price-box">
+                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-subtext">আজকের অফার প্রাইস জানুন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%201.5%20Ton%20Inverter%20AC%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
                 </div>
             </div>
 
-            <div class="product-card" data-category="ac">
-                <div class="card-img">❄️</div>
-                <div class="card-body">
-                    <span class="brand-tag">Butterfly - LG</span>
-                    <div class="product-title">LG Dual Inverter AC (1.5 Ton)</div>
-                    <div class="product-spec">ডুয়াল ইনভার্টার কম্প্রেসার, ১০ বছরের অফিশিয়াল কম্প্রেসার ওয়ারেন্টি।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20LG%20Dual%20Inverter%20AC%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
-                </div>
-            </div>
-
+            <!-- TV Category -->
             <div class="product-card" data-category="tv">
                 <div class="card-img">📺</div>
                 <div class="card-body">
-                    <span class="brand-tag">Minister Hi-Tech</span>
-                    <div class="product-title">Minister 43" 4K Smart Android TV</div>
-                    <div class="product-spec">ভয়েস কন্ট্রোল, ইউটিউব, নেটফ্লিক্স এবং ক্রিস্টাল ক্লিয়ার ডিসপ্লে।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Minister%2043%20inch%20Smart%20TV%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
+                    <span class="brand-tag tag-minister">Minister / MyOne</span>
+                    <div class="product-title">43" 4K Smart Android LED TV</div>
+                    <div class="product-spec">ভয়েস রিমোট কন্ট্রোল, ইউটিউব, ফেইসবুক, নেটফ্লিক্স ও ফ্রেমলেস চমৎকার ডিসপ্লে।</div>
+                    <div class="price-box">
+                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-subtext">শোরুমের অফার রেট জানতে চ্যাট করুন</div>
+                    </div>
+                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%2043%20inch%20Smart%20TV%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
                 </div>
             </div>
 
-            <div class="product-card" data-category="tv">
-                <div class="card-img">🖥️</div>
-                <div class="card-body">
-                    <span class="brand-tag">Butterfly - LG</span>
-                    <div class="product-title">LG 43" 4K UHD Smart WebOS TV</div>
-                    <div class="product-spec">ম্যাজিক রিমোট সাপোর্ট, অসাধারণ কালার এক্যুরেসি ও সিনেমাটিক সাউন্ড।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20LG%2043%20inch%20Smart%20TV%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="appliance">
-                <div class="card-img">🧺</div>
-                <div class="card-body">
-                    <span class="brand-tag">Butterfly & Minister</span>
-                    <div class="product-title">Automatic Front/Top Load Washing Machine</div>
-                    <div class="product-spec">স্মার্ট ড্রাম ওয়াশ, ড্রাইয়ার অপশন ও কম বিদ্যুৎ খরচে দ্রুত কাপড় পরিষ্কার।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Washing%20Machine%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="appliance">
-                <div class="card-img">🍳</div>
-                <div class="card-body">
-                    <span class="brand-tag">Minister & EcoPlus</span>
-                    <div class="product-title">Micro-oven, Blender & Rice Cooker</div>
-                    <div class="product-spec">রান্নাঘরের সেরা সব স্মার্ট কিচেন অ্যাপ্লায়েন্স একসাথে সবথেকে সাশ্রয়ী দামে।</div>
-                    <div class="price-tag">বিশেষ ডিলার প্রাইস</div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Kitchen%20Appliances%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
-                </div>
-            </div>
         </div>
 
         <div class="features">
             <div class="feature-item">
-                <h4>১০০% অরিজিনাল পণ্য</h4>
-                <p>মিনিস্টার ও বাটারফ্লাই-এর সরাসরি অফিসিয়াল ডিলার</p>
+                <h4>১০০% আসল প্রোডাক্ট</h4>
+                <p>অফিশিয়াল কোম্পানির গ্যারান্টি ও ওয়ারেন্টি সুবিধা</p>
             </div>
             <div class="feature-item">
-                <h4>অফিশিয়াল ওয়ারেন্টি</h4>
-                <p>প্রতিটি পণ্যে অফিশিয়াল ব্রান্ড ওয়ারেন্টি সুবিধা</p>
+                <h4>সেরা ডিলার ডিসকাউন্ট</h4>
+                <p>অনলাইন বা কোম্পানির ফিক্সড রেট থেকে বিশেষ ছাড়</p>
             </div>
             <div class="feature-item">
-                <h4>সহজ কিস্তি/ইএমআই</h4>
-                <p>বিশেষ শর্তে সহজ সুদে ও কিস্তিতে ক্রয়ের সুযোগ</p>
+                <h4>সহজ কিস্তি সুবিধা</h4>
+                <p>হাটবোয়ালিয়া শোরুম থেকে সহজ কিস্তিতে ক্রয়ের সুযোগ</p>
             </div>
             <div class="feature-item">
-                <h4>হোম ডেলিভারি ও সার্ভিস</h4>
-                <p>আলমডাঙ্গা ও আশেপাশের এলাকায় দ্রুত ডেলিভারি</p>
+                <h4>দ্রুত হোম ডেলিভারি</h4>
+                <p>আলমডাঙ্গা ও আশপাশের এলাকায় সুব্যবস্থা</p>
             </div>
         </div>
     </div>
