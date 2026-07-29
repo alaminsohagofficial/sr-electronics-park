@@ -3,77 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR Electronics Park | Authorized Dealer</title>
+    <title>SR Electronics Park | 3D World Class Showroom</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; padding-bottom: 50px; }
-        
-        /* Header */
-        header { background: linear-gradient(135deg, #1b365d, #0d1b2a); color: #fff; padding: 30px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        header h1 { font-size: 2.1rem; color: #ffb703; margin-bottom: 8px; font-weight: 800; }
-        header p.badge { display: inline-block; background: #e63946; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-bottom: 12px; }
-        header p.brands { font-size: 1rem; color: #e0e1dd; margin-bottom: 8px; }
-        header p.address { font-size: 0.95rem; color: #f1faee; opacity: 0.9; }
+        :root {
+            --bg-color: #0b132b;
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --border-glow: rgba(0, 240, 255, 0.3);
+            --accent-cyan: #00f0ff;
+            --accent-green: #25d366;
+            --accent-gold: #ffb703;
+            --text-light: #ffffff;
+            --text-sub: #cbd5e1;
+        }
 
-        /* Top Bar Call Button */
-        .cta-bar { background: #25d366; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .cta-bar a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
 
-        /* Container & Filter */
-        .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
-        .filter-section { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
-        .filter-btn { background: #fff; border: 2px solid #1b365d; color: #1b365d; padding: 8px 16px; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.2s ease; }
-        .filter-btn.active, .filter-btn:hover { background: #1b365d; color: #fff; }
+        body {
+            background: radial-gradient(circle at top center, #1c2541, #0b132b, #070a13);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
 
-        /* Product Grid */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e2e8f0; }
-        .card-img { width: 100%; height: 160px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
-        .card-body { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; }
-        
-        .brand-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 800; padding: 3px 8px; border-radius: 4px; width: fit-content; margin-bottom: 8px; }
-        .tag-ecoplus { background: #e3f2fd; color: #0288d1; }
-        .tag-myone { background: #fff3e0; color: #f57c00; }
-        .tag-lg { background: #fbe9e7; color: #d84315; }
-        .tag-minister { background: #e8f5e9; color: #2e7d32; }
+        /* 3D Glass Header */
+        header {
+            background: rgba(28, 37, 65, 0.6);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-        .product-title { font-size: 1.05rem; font-weight: bold; margin-bottom: 8px; color: #1d3557; line-height: 1.3; }
-        .product-spec { font-size: 0.85rem; color: #6c757d; margin-bottom: 15px; line-height: 1.4; }
-        
-        .price-box { background: #f1f5f9; padding: 10px; border-radius: 8px; text-align: center; margin-top: auto; margin-bottom: 12px; }
-        .price-text { font-size: 1.1rem; font-weight: bold; color: #0d1b2a; }
-        .price-subtext { font-size: 0.75rem; color: #e63946; font-weight: bold; }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f0ff, #ffb703);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0,240,255,0.2);
+        }
 
-        .order-btn { display: block; background: #25d366; color: #fff; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; }
-        .order-btn:hover { background: #1eb857; }
+        .badge-3d {
+            display: inline-block;
+            background: linear-gradient(135deg, #ef233c, #d90429);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 12px 0;
+            box-shadow: 0 4px 15px rgba(239, 35, 60, 0.4);
+            transform: translateZ(10px);
+        }
 
-        /* Features */
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 40px; background: #fff; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
-        .feature-item h4 { color: #1b365d; margin-bottom: 5px; }
-        .feature-item p { font-size: 0.85rem; color: #6c757d; }
+        header p.brands {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            margin-bottom: 6px;
+        }
 
-        footer { text-align: center; margin-top: 40px; color: #6c757d; font-size: 0.9rem; }
+        header p.address {
+            font-size: 0.95rem;
+            color: var(--accent-cyan);
+        }
+
+        /* Sticky Glowing Bar */
+        .cta-bar {
+            background: rgba(37, 211, 102, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(37, 211, 102, 0.3);
+            text-align: center;
+            padding: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .cta-bar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        /* 3D Filter Buttons */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glow);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--accent-cyan), #0077b6);
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* 3D Grid & Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            perspective: 1000px; /* 3D Perspective */
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.25);
+        }
+
+        .card-img-3d {
+            height: 180px;
+            background: radial-gradient(circle, rgba(0,240,255,0.1), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            position: relative;
+            transform: translateZ(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .card-img-3d {
+            transform: translateZ(50px) scale(1.1);
+        }
+
+        .card-body {
+            padding: 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            transform: translateZ(20px);
+        }
+
+        .brand-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 8px;
+            width: fit-content;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .brand-ecoplus { background: rgba(2, 136, 209, 0.2); color: #38bdf8; border: 1px solid #0288d1; }
+        .brand-myone { background: rgba(245, 124, 0, 0.2); color: #fb923c; border: 1px solid #f57c00; }
+        .brand-lg { background: rgba(216, 67, 21, 0.2); color: #f87171; border: 1px solid #d84315; }
+        .brand-minister { background: rgba(46, 125, 50, 0.2); color: #4ade80; border: 1px solid #2e7d32; }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product-spec {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .price-box-3d {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px dashed var(--border-glow);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .price-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .price-sub {
+            font-size: 0.78rem;
+            color: var(--accent-cyan);
+            margin-top: 3px;
+        }
+
+        /* Glowing Cyber Button */
+        .order-btn-3d {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .order-btn-3d:hover {
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+            transform: translateZ(10px) scale(1.02);
+        }
+
+        /* 3D Features Footer Box */
+        .features-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        .feature-box i {
+            font-size: 2.2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+
+        .feature-box h4 {
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .feature-box p {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>SR ELECTRONICS PARK</h1>
-        <p class="badge">অফিসিয়াল অনুমোদিত শোরুম</p>
+        <p class="badge-3d"><i class="fa-solid fa-shield-halved"></i> ৩ডি ওয়ার্ল্ড ক্লাসিক্যাল ডিলারশিপ</p>
         <p class="brands"><b>EcoPlus</b> (Butterfly) • <b>MyOne Refrigerator</b> • <b>LG</b> • <b>Minister</b></p>
-        <p class="address">📍 শাহ সুপার মার্কেট (২য় ও ৩য় তলা), হাটবোয়ালিয়া, আলমডাঙ্গা</p>
+        <p class="address"><i class="fa-solid fa-location-dot"></i> শাহ সুপার মার্কেট (২য় ও ৩য় তলা), হাটবোয়ালিয়া, আলমডাঙ্গা</p>
     </header>
 
     <div class="cta-bar">
         <a href="https://wa.me/8801711995940?text=হ্যালো!%20আমি%20SR%20Electronics%20Park%20থেকে%20বিশেষ%20ডিলার%20দাম%20জানতে%20চাই।" target="_blank">
-            💬 সেরা ডিলার ডিসকাউন্ট পেতে হোয়াটসঅ্যাপে মেসেজ দিন: 01711995940
+            <i class="fa-brands fa-whatsapp fa-lg"></i> সরাসরি হোয়াটসঅ্যাপে সেরা ডিলার ডিসকাউন্ট পান: 01711995940
         </a>
     </div>
 
     <div class="container">
         <div class="filter-section">
             <button class="filter-btn active" onclick="filterCategory('all', this)">সব প্রোডাক্ট</button>
-            <button class="filter-btn" onclick="filterCategory('ecoplus', this)">EcoPlus (সেরা বিক্রি)</button>
+            <button class="filter-btn" onclick="filterCategory('ecoplus', this)">EcoPlus (Butterfly)</button>
             <button class="filter-btn" onclick="filterCategory('myone', this)">MyOne ফ্রিজ</button>
             <button class="filter-btn" onclick="filterCategory('ac', this)">এসি (AC)</button>
             <button class="filter-btn" onclick="filterCategory('tv', this)">স্মার্ট টিভি</button>
@@ -83,127 +337,145 @@
             
             <!-- EcoPlus Refrigerator -->
             <div class="product-card" data-category="ecoplus">
-                <div class="card-img">🧊</div>
+                <div class="card-img-3d">🧊</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-ecoplus">EcoPlus (Butterfly)</span>
+                    <span class="brand-badge brand-ecoplus">EcoPlus (Butterfly)</span>
                     <div class="product-title">EcoPlus Direct Cool Refrigerator</div>
-                    <div class="product-spec">সাশ্রয়ী দামে বিদ্যুৎ-সাশ্রয়ী ফ্রিজ, দ্রুত বরফ জমাট বাঁধার প্রযুক্তি এবং লং-লাস্টিং পারফরম্যান্স।</div>
-                    <div class="price-box">
-                        <div class="price-text">শোরুম এক্সক্লুসিভ অফার</div>
-                        <div class="price-subtext">সর্বোত্তম ডিলার মূল্যের জন্য যোগাযোগ করুন</div>
+                    <div class="product-spec">অত্যন্ত বিদ্যুৎ সাশ্রয়ী, দ্রুত কুলিং সিস্টেম ও দীর্ঘস্থায়ী পারফরম্যান্স।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">শোরুম এক্সক্লুসিভ ডিসকাউন্ট</div>
+                        <div class="price-sub">সরাসরি চ্যাট করে সেরা প্রাইস জানুন</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Refrigerator%20এর%20আজকের%20বিশেষ%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Refrigerator%20এর%20আজকের%20বিশেষ%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
             <!-- EcoPlus Washing Machine -->
             <div class="product-card" data-category="ecoplus">
-                <div class="card-img">🧺</div>
+                <div class="card-img-3d">🧺</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-ecoplus">EcoPlus (Butterfly)</span>
+                    <span class="brand-badge brand-ecoplus">EcoPlus (Butterfly)</span>
                     <div class="product-title">EcoPlus Automatic Washing Machine</div>
-                    <div class="product-spec">স্মার্ট ওয়াশ মোড, কম পানি ও কম বিদ্যুৎ খরচে দ্রুত কাপড় পরিষ্কারের সেরা সমাধান।</div>
-                    <div class="price-box">
-                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
-                        <div class="price-subtext">হোয়াটসঅ্যাপে স্পেশাল ডিসকাউন্ট পাবেন</div>
+                    <div class="product-spec">স্মার্ট ওয়াশ মোড, কম পানি ও কম বিদ্যুৎ খরচে কাপড় ড্রায়ার সুবিধা।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-sub">হোয়াটসঅ্যাপে চ্যাট করুন</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Washing%20Machine%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Washing%20Machine%20এর%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
-            <!-- EcoPlus Chest Freezer -->
+            <!-- EcoPlus Deep Freezer -->
             <div class="product-card" data-category="ecoplus">
-                <div class="card-img">❄️</div>
+                <div class="card-img-3d">❄️</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-ecoplus">EcoPlus (Butterfly)</span>
-                    <div class="product-title">EcoPlus Deep Freezer / Chest Freezer</div>
-                    <div class="product-spec">অত্যাধিক স্টোরেজ ক্যাপাসিটি, শক্তপোক্ত বডি এবং দ্রুত ডিপ কুলিং সিস্টেম।</div>
-                    <div class="price-box">
-                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
-                        <div class="price-subtext">আজকের সেরা রেট জানতে চ্যাট করুন</div>
+                    <span class="brand-badge brand-ecoplus">EcoPlus (Butterfly)</span>
+                    <div class="product-title">EcoPlus Chest Deep Freezer</div>
+                    <div class="product-spec">বিশাল স্টোরেজ ক্যাপাসিটি, হেভি ডিউটি বডি এবং ফাস্ট ডিপ কুলিং।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-sub">হাটবোয়ালিয়া শোরুমের বিশেষ দাম</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Deep%20Freezer%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%20EcoPlus%20Deep%20Freezer%20এর%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
             <!-- MyOne Refrigerator 1 -->
             <div class="product-card" data-category="myone">
-                <div class="card-img">❄️</div>
+                <div class="card-img-3d">✨</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-myone">MyOne Refrigerator</span>
+                    <span class="brand-badge brand-myone">MyOne Refrigerator</span>
                     <div class="product-title">MyOne V-Series Glass Door Refrigerator</div>
-                    <div class="product-spec">আকর্ষণীয় গ্লাস ডোর ডিজাইন, ১০ বছরের অফিশিয়াল কম্প্রেসার ওয়ারেন্টি ও দ্রুত কুলিং।</div>
-                    <div class="price-box">
-                        <div class="price-text">শোরুম এক্সক্লুসিভ অফার</div>
-                        <div class="price-subtext">হাটবোয়ালিয়ার সেরা দামে নিন</div>
+                    <div class="product-spec">লাক্সারি গ্লাস ডোর ডিজাইন, ১০ বছরের অফিশিয়াল কম্প্রেসার ওয়ারেন্টি।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">শোরুম এক্সক্লুসিভ অফার</div>
+                        <div class="price-sub">বিশেষ ডিলারে বিশেষ রেট</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20MyOne%20Glass%20Door%20Refrigerator%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%20MyOne%20Glass%20Door%20Refrigerator%20এর%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
             <!-- MyOne Refrigerator 2 -->
             <div class="product-card" data-category="myone">
-                <div class="card-img">🧊</div>
+                <div class="card-img-3d">🧊</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-myone">MyOne Refrigerator</span>
+                    <span class="brand-badge brand-myone">MyOne Refrigerator</span>
                     <div class="product-title">MyOne Inverter Direct Cool Refrigerator</div>
-                    <div class="product-spec">ইনভার্টার প্রযুক্তি, শতভাগ কপার কনডেন্সার এবং কম ভোল্টেজে চলার ক্ষমতা।</div>
-                    <div class="price-box">
-                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
-                        <div class="price-subtext">সর্বোত্তম মূল্যের জন্য চ্যাট করুন</div>
+                    <div class="product-spec">স্মার্ট ইনভার্টার কমপ্রেসর, কম ভোল্টেও পারফেক্ট সার্ভিস।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-sub">আজকের অফার জানতে চ্যাট করুন</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20MyOne%20Inverter%20Refrigerator%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%20MyOne%20Inverter%20Refrigerator%20এর%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
             <!-- AC Category -->
             <div class="product-card" data-category="ac">
-                <div class="card-img">🌬️</div>
+                <div class="card-img-3d">🌬️</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-lg">LG / EcoPlus</span>
-                    <div class="product-title">1.5 Ton Inverter Air Conditioner</div>
-                    <div class="product-spec">সুপার ফাস্ট কুলিং, বিদ্যুৎ সাশ্রয়ী ইনভার্টার কম্প্রেসার ও এয়ার ফিল্টারিং।</div>
-                    <div class="price-box">
-                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
-                        <div class="price-subtext">আজকের অফার প্রাইস জানুন</div>
+                    <span class="brand-badge brand-lg">LG / EcoPlus</span>
+                    <div class="product-title">1.5 Ton Inverter Smart AC</div>
+                    <div class="product-spec">ডুয়াল ইনভার্টার কম্প্রেসার, ফাস্ট কুলিং ও এয়ার ফিল্টারিং সুবিধা।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-sub">অনলাইন থেকে সাশ্রয়ী মূল্যে পান</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%201.5%20Ton%20Inverter%20AC%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%201.5%20Ton%20Inverter%20AC%20এর%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
             <!-- TV Category -->
             <div class="product-card" data-category="tv">
-                <div class="card-img">📺</div>
+                <div class="card-img-3d">📺</div>
                 <div class="card-body">
-                    <span class="brand-tag tag-minister">Minister / MyOne</span>
-                    <div class="product-title">43" 4K Smart Android LED TV</div>
-                    <div class="product-spec">ভয়েস রিমোট কন্ট্রোল, ইউটিউব, ফেইসবুক, নেটফ্লিক্স ও ফ্রেমলেস চমৎকার ডিসপ্লে।</div>
-                    <div class="price-box">
-                        <div class="price-text">বিশেষ ডিলার প্রাইজ</div>
-                        <div class="price-subtext">শোরুমের অফার রেট জানতে চ্যাট করুন</div>
+                    <span class="brand-badge brand-minister">Minister / MyOne</span>
+                    <div class="product-title">43" 4K Smart Android Voice Control TV</div>
+                    <div class="product-spec">ফ্রেমলেস ডিজাইন, ভয়েস রিমোট কন্ট্রোল, ৪কে ক্রিস্টাল ডিসপ্লে।</div>
+                    <div class="price-box-3d">
+                        <div class="price-title">বিশেষ ডিলার প্রাইজ</div>
+                        <div class="price-sub">শোরুমের অফার প্রাইস পান</div>
                     </div>
-                    <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%2043%20inch%20Smart%20TV%20এর%20দাম%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে সেরা দাম জানুন</a>
+                    <a class="order-btn-3d" href="https://wa.me/8801711995940?text=আমি%2043%20inch%20Smart%20TV%20এর%20দাম%20জানতে%20চাই।" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে দাম জানুন
+                    </a>
                 </div>
             </div>
 
         </div>
 
-        <div class="features">
-            <div class="feature-item">
-                <h4>১০০% আসল প্রোডাক্ট</h4>
-                <p>অফিশিয়াল কোম্পানির গ্যারান্টি ও ওয়ারেন্টি সুবিধা</p>
+        <div class="features-3d">
+            <div class="feature-box">
+                <i class="fa-solid fa-award"></i>
+                <h4>১০০% অরিজিনাল পণ্য</h4>
+                <p>কোম্পানির অফিশিয়াল অফিসিয়ালি সিলযুক্ত পণ্য</p>
             </div>
-            <div class="feature-item">
-                <h4>সেরা ডিলার ডিসকাউন্ট</h4>
-                <p>অনলাইন বা কোম্পানির ফিক্সড রেট থেকে বিশেষ ছাড়</p>
+            <div class="feature-box">
+                <i class="fa-solid fa-tags"></i>
+                <h4>এক্সক্লুসিভ ডিলার রেট</h4>
+                <p>সবথেকে কম খরচে কেনাকাটার শতভাগ নিশ্চয়তা</p>
             </div>
-            <div class="feature-item">
+            <div class="feature-box">
+                <i class="fa-solid fa-credit-card"></i>
                 <h4>সহজ কিস্তি সুবিধা</h4>
-                <p>হাটবোয়ালিয়া শোরুম থেকে সহজ কিস্তিতে ক্রয়ের সুযোগ</p>
+                <p>হাটবোয়ালিয়া শোরুমে সহজ শর্তে কিস্তির সুযোগ</p>
             </div>
-            <div class="feature-item">
+            <div class="feature-box">
+                <i class="fa-solid fa-truck-fast"></i>
                 <h4>দ্রুত হোম ডেলিভারি</h4>
-                <p>আলমডাঙ্গা ও আশপাশের এলাকায় সুব্যবস্থা</p>
+                <p>আলমডাঙ্গা ও আশপাশে দ্রুততম ডেলিভারি সেবা</p>
             </div>
         </div>
     </div>
