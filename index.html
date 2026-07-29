@@ -8,51 +8,55 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6f9; color: #333; padding-bottom: 50px; }
         header { background: linear-gradient(135deg, #1b365d, #0d1b2a); color: #fff; padding: 30px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        header h1 { font-size: 2.2rem; color: #ffb703; margin-bottom: 8px; letter-spacing: 1px; }
+        header h1 { font-size: 2rem; color: #ffb703; margin-bottom: 8px; }
         header p.badge { display: inline-block; background: #e63946; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-bottom: 12px; }
         header p.address { font-size: 0.95rem; color: #e0e1dd; line-height: 1.4; }
         .cta-bar { background: #25d366; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .cta-bar a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .cta-bar a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.05rem; }
         .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
-        .filter-section { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
-        .filter-btn { background: #fff; border: 2px solid #1b365d; color: #1b365d; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
+        .filter-section { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+        .filter-btn { background: #fff; border: 2px solid #1b365d; color: #1b365d; padding: 8px 16px; border-radius: 25px; cursor: pointer; font-weight: bold; }
         .filter-btn.active, .filter-btn:hover { background: #1b365d; color: #fff; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
-        .card-img { width: 100%; height: 180px; background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: #6c757d; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; }
+        .card-img { width: 100%; height: 160px; background: #e9ecef; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
         .card-body { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; }
         .brand-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: #e63946; margin-bottom: 5px; }
         .product-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; color: #1d3557; }
         .product-spec { font-size: 0.85rem; color: #6c757d; margin-bottom: 15px; line-height: 1.4; }
-        .price-tag { font-size: 1.2rem; font-weight: bold; color: #2b9348; margin-top: auto; margin-bottom: 12px; }
-        .order-btn { display: block; background: #25d366; color: #fff; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; }
-        .order-btn:hover { background: #1eb857; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 40px; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; }
+        .price-tag { font-size: 1.1rem; font-weight: bold; color: #2b9348; margin-top: auto; margin-bottom: 12px; }
+        .order-btn { display: block; background: #25d366; color: #fff; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 40px; background: #fff; padding: 20px; border-radius: 12px; text-align: center; }
         .feature-item h4 { color: #1b365d; margin-bottom: 5px; }
         .feature-item p { font-size: 0.85rem; color: #6c757d; }
         footer { text-align: center; margin-top: 40px; color: #6c757d; font-size: 0.9rem; }
     </style>
 </head>
 <body>
+
     <header>
         <h1>SR ELECTRONICS PARK</h1>
         <p class="badge">অফিসিয়াল এক্সক্লুসিভ ডিলার</p>
         <p><b>Minister Hi-Tech Park</b> & <b>Butterfly Marketing Limited (LG & EcoPlus)</b></p>
         <p class="address">📍 শাহ সুপার মার্কেট (২য় ও ৩য় তলা), হাটবোয়ালিয়া, আলমডাঙ্গা</p>
     </header>
+
     <div class="cta-bar">
-        <a href="https://wa.me/8801711995940?text=হ্যালো!%20আমি%20SR%20Electronics%20Park%20থেকে%20পণ্য%20সম্পর্কে%20জানতে%20চাই।" target="_blank">💬 সরাসরি হোয়াটসঅ্যাপে অর্ডার করতে ক্লিক করুন: 01711995940</a>
+        <a href="https://wa.me/8801711995940?text=হ্যালো!%20আমি%20SR%20Electronics%20Park%20থেকে%20পণ্য%20সম্পর্কে%20জানতে%20চাই।" target="_blank">
+            💬 সরাসরি হোয়াটসঅ্যাপে অর্ডার করতে ক্লিক করুন: 01711995940
+        </a>
     </div>
+
     <div class="container">
         <div class="filter-section">
-            <button class="filter-btn active" onclick="filterCategory('all')">সব প্রোডাক্ট</button>
-            <button class="filter-btn" onclick="filterCategory('refrigerator')">ফ্রিজ</button>
-            <button class="filter-btn" onclick="filterCategory('ac')">এসি (AC)</button>
-            <button class="filter-btn" onclick="filterCategory('tv')">স্মার্ট টিভি</button>
-            <button class="filter-btn" onclick="filterCategory('appliance')">হোম অ্যাপ্লায়েন্স</button>
+            <button class="filter-btn active" onclick="filterCategory('all', this)">সব প্রোডাক্ট</button>
+            <button class="filter-btn" onclick="filterCategory('refrigerator', this)">ফ্রিজ</button>
+            <button class="filter-btn" onclick="filterCategory('ac', this)">এসি (AC)</button>
+            <button class="filter-btn" onclick="filterCategory('tv', this)">স্মার্ট টিভি</button>
+            <button class="filter-btn" onclick="filterCategory('appliance', this)">হোম অ্যাপ্লায়েন্স</button>
         </div>
-        <div class="product-grid" id="productGrid">
+
+        <div class="product-grid">
             <div class="product-card" data-category="refrigerator">
                 <div class="card-img">❄️</div>
                 <div class="card-body">
@@ -63,6 +67,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Minister%20Refrigerators%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="refrigerator">
                 <div class="card-img">🧊</div>
                 <div class="card-body">
@@ -73,6 +78,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20LG%20Refrigerator%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="ac">
                 <div class="card-img">🌬️</div>
                 <div class="card-body">
@@ -83,6 +89,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Minister%201.5%20Ton%20AC%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="ac">
                 <div class="card-img">❄️</div>
                 <div class="card-body">
@@ -93,6 +100,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20LG%20Dual%20Inverter%20AC%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="tv">
                 <div class="card-img">📺</div>
                 <div class="card-body">
@@ -103,6 +111,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Minister%2043%20inch%20Smart%20TV%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="tv">
                 <div class="card-img">🖥️</div>
                 <div class="card-body">
@@ -113,6 +122,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20LG%2043%20inch%20Smart%20TV%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="appliance">
                 <div class="card-img">🧺</div>
                 <div class="card-body">
@@ -123,6 +133,7 @@
                     <a class="order-btn" href="https://wa.me/8801711995940?text=আমি%20Washing%20Machine%20সম্পর্কে%20জানতে%20চাই।" target="_blank">হোয়াটসঅ্যাপে অর্ডার করুন</a>
                 </div>
             </div>
+
             <div class="product-card" data-category="appliance">
                 <div class="card-img">🍳</div>
                 <div class="card-body">
@@ -134,6 +145,7 @@
                 </div>
             </div>
         </div>
+
         <div class="features">
             <div class="feature-item">
                 <h4>১০০% অরিজিনাল পণ্য</h4>
@@ -153,15 +165,19 @@
             </div>
         </div>
     </div>
+
     <footer>
         <p>&copy; SR Electronics Park | Hatboalia, Alamdanga. All Rights Reserved.</p>
     </footer>
+
     <script>
-        function filterCategory(category) {
+        function filterCategory(category, btnElement) {
             const cards = document.querySelectorAll('.product-card');
             const buttons = document.querySelectorAll('.filter-btn');
+
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
+
             cards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {
                     card.style.display = 'flex';
