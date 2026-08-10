@@ -6,7 +6,7 @@
   <title>SR Electronics Park | 3D Interactive Showroom</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { overflow: hidden; background-color: #0d1117; color: #ffffff; }
+    body { overflow: hidden; background-color: #050505; color: #ffffff; }
 
     /* Header & Overlay UI */
     #ui-container {
@@ -21,7 +21,7 @@
 
     .brand-header {
       pointer-events: auto;
-      background: rgba(13, 17, 23, 0.85);
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(10px);
       padding: 15px 25px;
       border-radius: 12px;
@@ -34,35 +34,38 @@
     .brand-header h1 { font-size: 1.4rem; color: #00f2fe; text-transform: uppercase; letter-spacing: 1px; }
     .brand-header p { font-size: 0.85rem; color: #a0aec0; }
 
-    /* Product Controls / Controls Menu */
+    /* Controls Panel */
     .controls-panel {
       pointer-events: auto;
       align-self: center;
       margin-bottom: 20px;
       display: flex;
-      gap: 12px;
-      background: rgba(13, 17, 23, 0.85);
+      gap: 10px;
+      background: rgba(10, 10, 10, 0.9);
       backdrop-filter: blur(10px);
-      padding: 10px 15px;
+      padding: 10px 18px;
       border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
       background: transparent;
       border: 1px solid #00f2fe;
       color: #00f2fe;
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: 20px;
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s ease;
+      font-size: 0.85rem;
     }
 
     .btn.active, .btn:hover {
       background: #00f2fe;
-      color: #0d1117;
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+      color: #050505;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
     }
 
     /* Product Info Card */
@@ -71,26 +74,33 @@
       position: absolute;
       right: 20px;
       top: 90px;
-      width: 280px;
-      background: rgba(13, 17, 23, 0.9);
+      width: 290px;
+      background: rgba(15, 15, 15, 0.9);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 20px;
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     }
 
-    .info-card h2 { font-size: 1.2rem; margin-bottom: 8px; color: #4facfe; }
-    .info-card .price { font-size: 1.4rem; font-weight: bold; color: #00f2fe; margin-bottom: 12px; }
-    .info-card p { font-size: 0.85rem; color: #cbd5e0; line-height: 1.4; margin-bottom: 15px; }
+    .info-card .tag {
+      font-size: 0.75rem;
+      background: rgba(0, 242, 254, 0.15);
+      color: #00f2fe;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
 
-    /* Canvas 3D Viewport */
+    .info-card h2 { font-size: 1.2rem; margin-bottom: 6px; color: #ffffff; }
+    .info-card .price { font-size: 1.3rem; font-weight: bold; color: #00f2fe; margin-bottom: 10px; }
+    .info-card p { font-size: 0.85rem; color: #a0aec0; line-height: 1.4; margin-bottom: 15px; }
+
     #canvas-container { width: 100vw; height: 100vh; display: block; }
   </style>
 
-  <!-- Three.js Library Import -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- OrbitControls for mouse rotation/zoom -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
@@ -101,33 +111,34 @@
     <div class="brand-header">
       <div>
         <h1>SR Electronics Park</h1>
-        <p>3D Interactive Virtual Product Viewer</p>
+        <p>Showroom Product Catalog</p>
       </div>
-      <button class="btn" onclick="alert('ভर्चুয়াল শোরুমে স্বাগতম! মাউস ড্র্যাগ করে ৩৬০ ডিগ্রি ঘুরিয়ে দেখুন।')">সাহায্য</button>
+      <button class="btn" onclick="alert('পণ্য ঘুরিয়ে দেখতে মাউস ড্র্যাগ করুন।')">হেল্প</button>
     </div>
 
     <div class="info-card">
-      <h2 id="product-title">Smart Refrigerator</h2>
+      <span class="tag" id="product-brand">BUTTERFLY FACTORY</span>
+      <h2 id="product-title">LG Smart Refrigerator</h2>
       <div class="price" id="product-price">৳ ৭৮,৫০০</div>
-      <p id="product-desc">ডিজিটাল ইনভার্টার কম্প্রেসর ও স্মুথ ফিনিশিং সহ ৩D ইন্টারেক্টিভ মডেল।</p>
-      <button class="btn" style="width:100%" onclick="alert('অর্ডার বা বুকিংয়ের জন্য শোরুমে যোগাযোগ করুন।')">বুকিং দিন</button>
+      <p id="product-desc">বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ।</p>
+      <button class="btn" style="width:100%" onclick="alert('অর্ডারের জন্য শোরুমে যোগাযোগ করুন।')">বুকিং দিন</button>
     </div>
 
     <div class="controls-panel">
-      <button class="btn active" onclick="switchProduct('fridge', this)">রেফ্রিজারেটর</button>
-      <button class="btn" onclick="switchProduct('tv', this)">স্মার্ট টিভি</button>
-      <button class="btn" onclick="switchProduct('ac', this)">এয়ার কন্ডিশনার</button>
+      <button class="btn active" onclick="switchProduct('lg_fridge', this)">LG Refrigerator</button>
+      <button class="btn" onclick="switchProduct('ecoplus_tv', this)">ECO+ Smart TV</button>
+      <button class="btn" onclick="switchProduct('pixel_phone', this)">Google Pixel</button>
+      <button class="btn" onclick="switchProduct('samsung_phone', this)">Samsung Galaxy</button>
     </div>
   </div>
 
   <script>
-    // 1. Basic Three.js Setup
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0e17);
+    scene.background = new THREE.Color(0x050505);
 
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 2, 7);
+    camera.position.set(0, 1.5, 6);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -137,98 +148,97 @@
 
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
 
-    // 2. Lighting Setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0x00f2fe, 0.8);
+    const dirLight = new THREE.DirectionalLight(0x00f2fe, 1.0);
     dirLight.position.set(5, 10, 7);
-    dirLight.castShadow = true;
     scene.add(dirLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.5);
-    pointLight.position.set(-5, 3, -5);
-    scene.add(pointLight);
-
-    // Grid Floor
-    const gridHelper = new THREE.GridHelper(20, 20, 0x00f2fe, 0x1a202c);
-    gridHelper.position.y = -1.5;
+    const gridHelper = new THREE.GridHelper(20, 20, 0x00f2fe, 0x222222);
+    gridHelper.position.y = -1.2;
     scene.add(gridHelper);
 
-    // 3. 3D Procedural Mesh Models (Default Placeholders)
     let currentMesh = null;
 
+    // 1. LG Refrigerator (Butterfly Assembled)
     function createFridge() {
       const group = new THREE.Group();
-      const bodyGeo = new THREE.BoxGeometry(1.5, 3, 1.5);
-      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2d3748, roughness: 0.2, metalness: 0.8 });
+      const bodyGeo = new THREE.BoxGeometry(1.4, 2.8, 1.4);
+      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1a202c, roughness: 0.2, metalness: 0.8 });
       const body = new THREE.Mesh(bodyGeo, bodyMat);
       group.add(body);
 
-      // Handle
-      const handleGeo = new THREE.BoxGeometry(0.1, 1.2, 0.1);
+      const handleGeo = new THREE.BoxGeometry(0.08, 1.0, 0.08);
       const handleMat = new THREE.MeshStandardMaterial({ color: 0x00f2fe, metalness: 0.9 });
       const handle = new THREE.Mesh(handleGeo, handleMat);
-      handle.position.set(0.6, 0.2, 0.8);
+      handle.position.set(0.55, 0.2, 0.75);
       group.add(handle);
-
       return group;
     }
 
+    // 2. ECO+ Smart TV (Butterfly Production)
     function createTV() {
       const group = new THREE.Group();
-      // Screen Frame
-      const frameGeo = new THREE.BoxGeometry(3.2, 1.8, 0.1);
+      const frameGeo = new THREE.BoxGeometry(3.0, 1.7, 0.1);
       const frameMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.1 });
       const frame = new THREE.Mesh(frameGeo, frameMat);
       group.add(frame);
 
-      // Display Surface
-      const screenGeo = new THREE.PlaneGeometry(3.0, 1.6);
+      const screenGeo = new THREE.PlaneGeometry(2.85, 1.55);
       const screenMat = new THREE.MeshBasicMaterial({ color: 0x00a8ff });
       const screen = new THREE.Mesh(screenGeo, screenMat);
       screen.position.z = 0.06;
       group.add(screen);
-
-      // Stand
-      const standGeo = new THREE.CylinderGeometry(0.1, 0.4, 0.6, 16);
-      const standMat = new THREE.MeshStandardMaterial({ color: 0x4a5568, metalness: 0.8 });
-      const stand = new THREE.Mesh(standGeo, standMat);
-      stand.position.set(0, -1.2, 0);
-      group.add(stand);
-
       return group;
     }
 
-    function createAC() {
+    // 3. Google Pixel Phone 3D
+    function createPixel() {
       const group = new THREE.Group();
-      const acGeo = new THREE.BoxGeometry(3.0, 0.9, 0.8);
-      const acMat = new THREE.MeshStandardMaterial({ color: 0xf7fafc, roughness: 0.3 });
-      const acBody = new THREE.Mesh(acGeo, acMat);
-      group.add(acBody);
+      const bodyGeo = new THREE.BoxGeometry(1.0, 2.1, 0.12);
+      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2d3748, roughness: 0.3 });
+      const body = new THREE.Mesh(bodyGeo, bodyMat);
+      group.add(body);
 
-      // Vent strip
-      const ventGeo = new THREE.BoxGeometry(2.8, 0.1, 0.1);
-      const ventMat = new THREE.MeshBasicMaterial({ color: 0x00f2fe });
-      const vent = new THREE.Mesh(ventGeo, ventMat);
-      vent.position.set(0, -0.3, 0.41);
-      group.add(vent);
-
+      // Pixel Camera Bar
+      const barGeo = new THREE.BoxGeometry(1.02, 0.35, 0.18);
+      const barMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9 });
+      const bar = new THREE.Mesh(barGeo, barMat);
+      bar.position.set(0, 0.65, 0);
+      group.add(bar);
       return group;
     }
 
-    // Load Default Model
+    // 4. Samsung Galaxy Phone 3D
+    function createSamsung() {
+      const group = new THREE.Group();
+      const bodyGeo = new THREE.BoxGeometry(1.05, 2.2, 0.1);
+      const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.1, metalness: 0.9 });
+      const body = new THREE.Mesh(bodyGeo, bodyMat);
+      group.add(body);
+
+      // Screen
+      const screenGeo = new THREE.PlaneGeometry(0.98, 2.12);
+      const screenMat = new THREE.MeshBasicMaterial({ color: 0x00f2fe });
+      const screen = new THREE.Mesh(screenGeo, screenMat);
+      screen.position.z = 0.06;
+      group.add(screen);
+      return group;
+    }
+
+    // Product Data
+    const productData = {
+      lg_fridge: { brand: "BUTTERFLY FACTORY", title: "LG Smart Refrigerator", price: "৳ ৭৮,৫০০", desc: "বাটারফ্লাই হাই-টেক প্লান্টে অ্যাসেম্বলকৃত ডাবল ডোর ইনভার্টার ফ্রিজ।" },
+      ecoplus_tv: { brand: "BUTTERFLY PRODUCTION", title: "ECO+ 4K Smart TV", price: "৳ ৪২,০০০", desc: "বাটারফ্লাইয়ের নিজস্ব ব্র্যান্ড ইকো+ ৪K অ্যান্ড্রয়েড স্মার্ট টিভি।" },
+      pixel_phone: { brand: "FLAGSHIP SMARTPHONE", title: "Google Pixel 8 Pro", price: "৳ ৯৫,০০০", desc: "অরিজিনাল গুগল পিক্সেল ফ্ল্যাগশিপ ক্যামেরা স্মার্টফোন।" },
+      samsung_phone: { brand: "OFFICIAL DISTRIBUTION", title: "Samsung Galaxy S-Series", price: "৳ ১,১৫,০০০", desc: "অফিশিয়াল স্যামসাং গ্যালাক্সি ডিসপ্লে মডেল।" }
+    };
+
     currentMesh = createFridge();
     scene.add(currentMesh);
-
-    // 4. Product Switcher Function
-    const productData = {
-      fridge: { title: "Smart Refrigerator", price: "৳ ৭৮,৫০০", desc: "ইনভার্টার ডাবল ডোর ফ্রিজ, মেটালিক ফিনিশ ও এনার্জি সেভিং।" },
-      tv: { title: "4K Ultra HD Smart TV", price: "৳ ৫৫,০০০", desc: "৫৫ ইঞ্চি বেজেল-লেস অ্যান্ড্রয়েড স্মার্ট টিভি, ৪K রেজোলিউশন।" },
-      ac: { title: "Inverter Split AC", price: "৳ ৬৫,০০০", desc: "১.৫ টন ডুয়াল ইনভার্টার এসি, দ্রুত কুলিং ও কম বিদ্যুৎ খরচ।" }
-    };
 
     function switchProduct(type, btnElement) {
       document.querySelectorAll('.controls-panel .btn').forEach(b => b.classList.remove('active'));
@@ -236,30 +246,27 @@
 
       if (currentMesh) scene.remove(currentMesh);
 
-      if (type === 'fridge') currentMesh = createFridge();
-      else if (type === 'tv') currentMesh = createTV();
-      else if (type === 'ac') currentMesh = createAC();
+      if (type === 'lg_fridge') currentMesh = createFridge();
+      else if (type === 'ecoplus_tv') currentMesh = createTV();
+      else if (type === 'pixel_phone') currentMesh = createPixel();
+      else if (type === 'samsung_phone') currentMesh = createSamsung();
 
       scene.add(currentMesh);
 
-      // Update UI Panel
+      document.getElementById('product-brand').innerText = productData[type].brand;
       document.getElementById('product-title').innerText = productData[type].title;
       document.getElementById('product-price').innerText = productData[type].price;
       document.getElementById('product-desc').innerText = productData[type].desc;
     }
 
-    // 5. Animation Loop
     function animate() {
       requestAnimationFrame(animate);
-      if (currentMesh) {
-        currentMesh.rotation.y += 0.005; // Gentle Auto-rotation
-      }
+      if (currentMesh) currentMesh.rotation.y += 0.006;
       controls.update();
       renderer.render(scene, camera);
     }
     animate();
 
-    // 6. Responsive Window Resize
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
