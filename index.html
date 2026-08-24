@@ -3,123 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR ELECTRONICS PARK</title>
+    <title>SR ELECTRONICS PARK - 3D Virtual Showroom</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        body { background-color: #05080f; margin: 0; overflow: hidden; font-family: sans-serif; }
-        #canvas-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; }
-        .ui-layer { position: relative; z-index: 10; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; box-sizing: border-box; }
-        .glow-card { box-shadow: 0 0 25px rgba(0, 240, 255, 0.25); border: 1px solid rgba(0, 240, 255, 0.4); }
-    </style>
-</head>
-<body class="text-white">
-
-    <div id="canvas-bg"></div>
-
-    <div class="ui-layer max-w-md mx-auto">
-        <!-- Header -->
-        <div class="flex justify-between items-center bg-[#0d131f]/90 border border-cyan-500/30 p-3 rounded-2xl backdrop-blur-md">
-            <div>
-                <h1 class="text-base font-black text-cyan-400 tracking-wider">SR ELECTRONICS PARK</h1>
-                <p class="text-[9px] text-gray-400 uppercase">Showroom Product 3D Showcase</p>
-            </div>
-            <button onclick="alert('যোগাযোগ: হাটবোয়ালিয়া বাজার, চুয়াডাঙ্গা')" class="border border-cyan-400 text-cyan-400 text-xs px-3 py-1 rounded-full font-bold">
-                হেল্প
-            </button>
-        </div>
-
-        <!-- Product Card -->
-        <div class="bg-[#0c121d]/90 rounded-3xl p-5 glow-card backdrop-blur-lg my-auto">
-            <span id="pTag" class="text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-500/40 px-2 py-0.5 rounded font-bold uppercase">
-                BUTTERFLY FACTORY
-            </span>
-            <h2 id="pTitle" class="text-xl font-black mt-2 text-white">LG Smart Refrigerator</h2>
-            <div id="pPrice" class="text-2xl font-black text-cyan-400 my-1">৳ ৭৮,৫০০</div>
-            <p id="pDesc" class="text-xs text-gray-300 leading-relaxed mb-4">
-                বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের ওয়ারেন্টি।
-            </p>
-            <button onclick="orderViaWA()" class="w-full bg-transparent hover:bg-cyan-400 hover:text-black border-2 border-cyan-400 text-cyan-400 py-2.5 rounded-xl font-extrabold text-sm transition-all">
-                বুকিং দিন
-            </button>
-        </div>
-
-        <!-- Category Tabs -->
-        <div class="bg-[#0d131f]/90 border border-cyan-500/30 p-2 rounded-2xl backdrop-blur-md grid grid-cols-2 gap-2">
-            <button onclick="changeProduct(0)" id="b0" class="bg-cyan-400 text-black text-xs font-bold py-2 rounded-xl">LG Refrigerator</button>
-            <button onclick="changeProduct(1)" id="b1" class="border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl">ECO+ Smart TV</button>
-            <button onclick="changeProduct(2)" id="b2" class="border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl">Minister Direct Cool</button>
-            <button onclick="changeProduct(3)" id="b3" class="border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl">Samsung Galaxy</button>
-        </div>
-    </div>
-
     <script>
-        const prods = [
-            { tag: "BUTTERFLY FACTORY", title: "LG Smart Refrigerator", price: "৳ ৭৮,৫০০", desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং।" },
-            { tag: "OFFICIAL BUTTERFLY", title: "ECO+ 43\" 4K Smart TV", price: "৳ ৩৬,৯০০", desc: "অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস কন্ট্রোল রিমোট এবং ডলবি ডিজিটাল অডিও।" },
-            { tag: "MINISTER HI-TECH", title: "Minister Ultra Inverter Fridge", price: "৳ ৪৪,৫০০", desc: "মিনিস্টার হাই-টেক পার্কের পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও দ্রুত বরফ জমার সুবিধা।" },
-            { tag: "FLAGSHIP SMARTPHONE", title: "Samsung Galaxy S24 Ultra", price: "৳ ১,৪৯,০০০", desc: "অফিশিয়াল বিটিআরসি অনুমোদিত স্মার্টফোন, গ্যালাক্সি এআই ও ২০০ মেগাপিক্সেল ক্যামেরা।" }
-        ];
-
-        let curr = 0;
-
-        function changeProduct(idx) {
-            curr = idx;
-            const p = prods[idx];
-            document.getElementById('pTag').innerText = p.tag;
-            document.getElementById('pTitle').innerText = p.title;
-            document.getElementById('pPrice').innerText = p.price;
-            document.getElementById('pDesc').innerText = p.desc;
-
-            for(let i=0; i<4; i++) {
-                const b = document.getElementById('b' + i);
-                if(i === idx) {
-                    b.className = "bg-cyan-400 text-black text-xs font-bold py-2 rounded-xl";
-                } else {
-                    b.className = "border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl";
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#040711',
+                            card: '#0b111e',
+                            border: '#1b2a42',
+                            cyan: '#00f0ff',
+                            cyanDark: '#009ba6',
+                            muted: '#8a9fb8'
+                        }
+                    }
                 }
             }
         }
+    </script>
+    <!-- Google Model Viewer (Free & Open Source 3D/AR Engine) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #040711;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+        model-viewer {
+            width: 100%;
+            height: 280px;
+            background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, rgba(4,7,17,0) 70%);
+            border-radius: 1.5rem;
+            --poster-color: transparent;
+        }
+        .glow-box {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex flex-col justify-between p-3 sm:p-5 selection:bg-cyber-cyan selection:text-black">
+
+    <!-- Top Header -->
+    <header class="max-w-md w-full mx-auto flex justify-between items-center bg-cyber-card/90 border border-cyber-border p-3 rounded-2xl backdrop-blur-md">
+        <div>
+            <h1 class="text-base font-black text-cyber-cyan tracking-wide flex items-center gap-1.5">
+                <i class="fa-solid fa-cube text-sm"></i> SR ELECTRONICS PARK
+            </h1>
+            <p class="text-[9px] text-cyber-muted uppercase tracking-wider">3D Showroom • Butterfly & Minister Partner</p>
+        </div>
+        <button onclick="alert('শোরুম ঠিকানা: হাটবোয়ালিয়া বাজার, আলমডাঙ্গা, চুয়াডাঙ্গা। প্রোপাইটর: মোঃ আল আমিন সোহাগ')" class="border border-cyber-cyan/60 text-cyber-cyan hover:bg-cyber-cyan hover:text-black text-xs px-3 py-1.5 rounded-xl font-bold transition-all">
+            হেল্প
+        </button>
+    </header>
+
+    <!-- Main 3D Showcase Stage -->
+    <main class="max-w-md w-full mx-auto my-auto py-3">
+        <div class="bg-cyber-card border border-cyber-cyan/40 rounded-3xl p-4 sm:p-5 glow-box relative">
+            
+            <!-- 3D Interactive Model Viewer with AR -->
+            <div class="relative w-full rounded-2xl overflow-hidden border border-cyber-border/80 bg-black/40">
+                <model-viewer 
+                    id="product3DViewer"
+                    src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb"
+                    poster="https://via.placeholder.com/400x300/0b111e/00f0ff?text=Loading+3D+Model..."
+                    alt="3D Electronics Product"
+                    auto-rotate
+                    camera-controls
+                    touch-action="pan-y"
+                    shadow-intensity="1.5"
+                    exposure="1"
+                    ar
+                    ar-modes="webxr scene-viewer quick-look">
+                    <button slot="ar-button" class="absolute bottom-3 right-3 bg-cyber-cyan text-black px-3 py-1.5 rounded-xl text-[11px] font-black shadow-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-camera"></i> ঘরে দেখুন (AR)
+                    </button>
+                </model-viewer>
+                
+                <div class="absolute top-2 left-2 pointer-events-none bg-black/60 px-2 py-0.5 rounded-md text-[9px] text-cyber-cyan font-bold border border-cyber-cyan/30">
+                    <i class="fa-solid fa-arrows-rotate"></i> 360° আঙুল দিয়ে ঘুরিয়ে দেখুন
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                    <span id="prodTag" class="text-[10px] uppercase font-bold text-cyber-cyan bg-cyan-950/80 border border-cyber-cyan/40 px-2 py-0.5 rounded">
+                        BUTTERFLY FACTORY
+                    </span>
+                    <span id="prodBrand" class="text-[11px] font-semibold text-cyber-muted">
+                        LG ELECTRONICS
+                    </span>
+                </div>
+                
+                <h2 id="prodTitle" class="text-xl font-black text-white mt-1">LG Smart Inverter Refrigerator</h2>
+                <div id="prodPrice" class="text-2xl font-black text-cyber-cyan my-1">৳ ৭৮,৫০০</div>
+                
+                <p id="prodDesc" class="text-xs text-cyber-muted leading-relaxed mb-4">
+                    বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং সিস্টেম।
+                </p>
+
+                <!-- Booking Button -->
+                <button onclick="orderViaWA()" class="w-full bg-cyber-cyan hover:bg-cyber-cyanDark text-black py-3 rounded-2xl font-black text-sm transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> অর্ডার / বুকিং নিশ্চিত করুন
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Category Tabs -->
+    <footer class="max-w-md w-full mx-auto pb-2">
+        <div class="bg-cyber-card border border-cyber-border p-2 rounded-2xl grid grid-cols-2 gap-2 shadow-xl">
+            <button onclick="changeShowcase(0)" id="t0" class="tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center truncate">
+                LG Refrigerator
+            </button>
+            <button onclick="changeShowcase(1)" id="t1" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
+                Minister Direct Cool
+            </button>
+            <button onclick="changeShowcase(2)" id="t2" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
+                ECO+ 4K Smart TV
+            </button>
+            <button onclick="changeShowcase(3)" id="t3" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
+                LG Dual Inverter AC
+            </button>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic -->
+    <script>
+        // Catalog with Free 3D Models
+        const catalog = [
+            {
+                tag: "BUTTERFLY FACTORY",
+                brand: "LG ELECTRONICS",
+                title: "LG Smart Inverter Refrigerator",
+                price: "৳ ৭৮,৫০০",
+                desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং সিস্টেম।",
+                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb"
+            },
+            {
+                tag: "MINISTER HI-TECH",
+                brand: "MINISTER GROUP",
+                title: "Minister Direct Cool 222L",
+                price: "৳ ৩৮,৫০০",
+                desc: "মিনিস্টার হাই-টেক পার্কের পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও অ্যান্টি-ব্যাকটেরিয়াল ডোর গ্যাসকেট।",
+                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxInterleaved/glTF-Binary/BoxInterleaved.glb"
+            },
+            {
+                tag: "OFFICIAL BUTTERFLY",
+                brand: "ECO+ BRAND",
+                title: "ECO+ 43\" 4K Smart TV",
+                price: "৳ ৩৬,৯০০",
+                desc: "অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস কন্ট্রোল রিমোট, ডলবি অডিও সাউন্ড সিস্টেম এবং ২ বছরের প্যানেল ওয়ারেন্টি।",
+                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb"
+            },
+            {
+                tag: "LG INVERTER",
+                brand: "BUTTERFLY FACTORY",
+                title: "LG Dual Inverter 1.5 Ton AC",
+                price: "৳ ৭২,০০০",
+                desc: "৭০% পর্যন্ত বিদ্যুৎ সাশ্রয়ী ডুয়াল কুলিং টেকনোলজি এবং ১০ বছরের কম্প্রেসার ওয়ারেন্টি।",
+                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb"
+            }
+        ];
+
+        let selectedIndex = 0;
+
+        function changeShowcase(index) {
+            selectedIndex = index;
+            const p = catalog[index];
+
+            // Update 3D Model
+            const viewer = document.getElementById('product3DViewer');
+            viewer.src = p.modelUrl;
+
+            // Update Details
+            document.getElementById('prodTag').innerText = p.tag;
+            document.getElementById('prodBrand').innerText = p.brand;
+            document.getElementById('prodTitle').innerText = p.title;
+            document.getElementById('prodPrice').innerText = p.price;
+            document.getElementById('prodDesc').innerText = p.desc;
+
+            // Highlight Active Tab
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+                if(idx === index) {
+                    btn.className = "tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center truncate";
+                } else {
+                    btn.className = "tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate";
+                }
+            });
+        }
 
         function orderViaWA() {
-            const p = prods[curr];
-            const msg = `*SR ELECTRONICS PARK ORDER*%0A%0A*পণ্য:* ${p.title}%0A*মূল্য:* ${p.price}`;
+            const p = catalog[selectedIndex];
+            const msg = `*SR ELECTRONICS PARK ORDER*%0A%0A*পণ্য:* ${p.title}%0A*মূল্য:* ${p.price}%0A*শোরুম:* হাটবোয়ালিয়া বাজার, চুয়াডাঙ্গা`;
             window.open(`https://wa.me/8801700000000?text=${msg}`, '_blank');
         }
-
-        // 3D Perspective Wireframe Grid
-        const container = document.getElementById('canvas-bg');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 2, 7);
-        camera.lookAt(0, 0, 0);
-
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
-
-        const grid = new THREE.GridHelper(40, 25, 0x00f0ff, 0x112233);
-        grid.position.y = -1.5;
-        scene.add(grid);
-
-        const boxGeo = new THREE.BoxGeometry(2.5, 3.5, 2);
-        const wire = new THREE.WireframeGeometry(boxGeo);
-        const box = new THREE.LineSegments(wire, new THREE.LineBasicMaterial({ color: 0x00f0ff }));
-        box.position.set(0, 0.5, 0);
-        scene.add(box);
-
-        function animate() {
-            requestAnimationFrame(animate);
-            box.rotation.y += 0.008;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
     </script>
 </body>
 </html>
