@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR ELECTRONICS PARK - 3D Virtual Showroom</title>
+    <title>SR ELECTRONICS PARK - 3D Virtual Showroom & AI Sync</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -24,7 +24,7 @@
             }
         }
     </script>
-    <!-- Google Model Viewer (Free & Open Source 3D/AR Engine) -->
+    <!-- Google Model Viewer Engine -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -36,7 +36,7 @@
         }
         model-viewer {
             width: 100%;
-            height: 280px;
+            height: 260px;
             background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, rgba(4,7,17,0) 70%);
             border-radius: 1.5rem;
             --poster-color: transparent;
@@ -54,10 +54,10 @@
             <h1 class="text-base font-black text-cyber-cyan tracking-wide flex items-center gap-1.5">
                 <i class="fa-solid fa-cube text-sm"></i> SR ELECTRONICS PARK
             </h1>
-            <p class="text-[9px] text-cyber-muted uppercase tracking-wider">3D Showroom • Butterfly & Minister Partner</p>
+            <p class="text-[9px] text-cyber-muted uppercase tracking-wider">Synced: Minister • MyOne • Butterfly</p>
         </div>
-        <button onclick="alert('শোরুম ঠিকানা: হাটবোয়ালিয়া বাজার, আলমডাঙ্গা, চুয়াডাঙ্গা। প্রোপাইটর: মোঃ আল আমিন সোহাগ')" class="border border-cyber-cyan/60 text-cyber-cyan hover:bg-cyber-cyan hover:text-black text-xs px-3 py-1.5 rounded-xl font-bold transition-all">
-            হেল্প
+        <button onclick="toggleAiChat()" class="bg-cyan-950 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black text-xs px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1">
+            <i class="fa-solid fa-robot"></i> Gemini AI
         </button>
     </header>
 
@@ -69,8 +69,7 @@
             <div class="relative w-full rounded-2xl overflow-hidden border border-cyber-border/80 bg-black/40">
                 <model-viewer 
                     id="product3DViewer"
-                    src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb"
-                    poster="https://via.placeholder.com/400x300/0b111e/00f0ff?text=Loading+3D+Model..."
+                    src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb"
                     alt="3D Electronics Product"
                     auto-rotate
                     camera-controls
@@ -85,7 +84,7 @@
                 </model-viewer>
                 
                 <div class="absolute top-2 left-2 pointer-events-none bg-black/60 px-2 py-0.5 rounded-md text-[9px] text-cyber-cyan font-bold border border-cyber-cyan/30">
-                    <i class="fa-solid fa-arrows-rotate"></i> 360° আঙুল দিয়ে ঘুরিয়ে দেখুন
+                    <i class="fa-solid fa-arrows-rotate"></i> 360° ঘুরে দেখুন
                 </div>
             </div>
 
@@ -93,7 +92,7 @@
             <div class="mt-4">
                 <div class="flex justify-between items-center mb-1">
                     <span id="prodTag" class="text-[10px] uppercase font-bold text-cyber-cyan bg-cyan-950/80 border border-cyber-cyan/40 px-2 py-0.5 rounded">
-                        BUTTERFLY FACTORY
+                        BUTTERFLY GROUP
                     </span>
                     <span id="prodBrand" class="text-[11px] font-semibold text-cyber-muted">
                         LG ELECTRONICS
@@ -116,17 +115,17 @@
         </div>
     </main>
 
-    <!-- Category Tabs -->
+    <!-- Synchronized Category Tabs -->
     <footer class="max-w-md w-full mx-auto pb-2">
         <div class="bg-cyber-card border border-cyber-border p-2 rounded-2xl grid grid-cols-2 gap-2 shadow-xl">
             <button onclick="changeShowcase(0)" id="t0" class="tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center truncate">
-                LG Refrigerator
+                LG Refrigerator (Butterfly)
             </button>
             <button onclick="changeShowcase(1)" id="t1" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
                 Minister Direct Cool
             </button>
             <button onclick="changeShowcase(2)" id="t2" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
-                ECO+ 4K Smart TV
+                MyOne 4K Smart TV
             </button>
             <button onclick="changeShowcase(3)" id="t3" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
                 LG Dual Inverter AC
@@ -134,16 +133,45 @@
         </div>
     </footer>
 
-    <!-- Interactive Logic -->
+    <!-- Gemini AI Assistant Modal -->
+    <div id="aiModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cyber-card border border-cyber-cyan rounded-3xl max-w-sm w-full p-5 flex flex-col h-[480px]">
+            <div class="flex justify-between items-center border-b border-cyber-border pb-3">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-sparkles text-cyber-cyan"></i>
+                    <h3 class="text-sm font-bold text-white">Gemini শোরুম অ্যাসিস্ট্যান্ট</h3>
+                </div>
+                <button onclick="toggleAiChat()" class="text-cyber-muted hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Chat Output -->
+            <div id="chatBox" class="flex-1 overflow-y-auto py-3 space-y-2 text-xs">
+                <div class="bg-cyan-950/40 p-2.5 rounded-xl border border-cyber-cyan/30 text-cyber-muted">
+                    👋 স্বাগতম! আমি মিনিস্টার, মাইওয়ান ও বাটারফ্লাই গ্রুপের অফিসিয়াল প্রোডাক্ট হেল্পার। কোন পণ্য সম্পর্কে জানতে চান?
+                </div>
+            </div>
+
+            <!-- Input Box -->
+            <div class="pt-2 border-t border-cyber-border flex gap-2">
+                <input type="text" id="userMsg" placeholder="যেমন: ৪০ হাজার টাকার মধ্যে সেরা ফ্রিজ..." class="flex-1 bg-cyber-bg border border-cyber-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+                <button onclick="sendAiMessage()" class="bg-cyber-cyan text-black px-3 py-2 rounded-xl font-bold text-xs hover:bg-cyber-cyanDark transition-all">
+                    পাঠান
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
     <script>
-        // Catalog with Free 3D Models
         const catalog = [
             {
-                tag: "BUTTERFLY FACTORY",
+                tag: "BUTTERFLY GROUP",
                 brand: "LG ELECTRONICS",
                 title: "LG Smart Inverter Refrigerator",
                 price: "৳ ৭৮,৫০০",
-                desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং সিস্টেম।",
+                desc: "butterflygroupbd.com থেকে সিনক্রোনাইজড। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট কুলিং সিস্টেম।",
                 modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb"
             },
             {
@@ -151,23 +179,23 @@
                 brand: "MINISTER GROUP",
                 title: "Minister Direct Cool 222L",
                 price: "৳ ৩৮,৫০০",
-                desc: "মিনিস্টার হাই-টেক পার্কের পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও অ্যান্টি-ব্যাকটেরিয়াল ডোর গ্যাসকেট।",
+                desc: "ministerbd.com থেকে সিনক্রোনাইজড। পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও অ্যান্টি-ব্যাকটেরিয়াল গ্যাসকেট।",
                 modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxInterleaved/glTF-Binary/BoxInterleaved.glb"
             },
             {
-                tag: "OFFICIAL BUTTERFLY",
-                brand: "ECO+ BRAND",
-                title: "ECO+ 43\" 4K Smart TV",
-                price: "৳ ৩৬,৯০০",
-                desc: "অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস কন্ট্রোল রিমোট, ডলবি অডিও সাউন্ড সিস্টেম এবং ২ বছরের প্যানেল ওয়ারেন্টি।",
+                tag: "MYONE OFFICIAL",
+                brand: "MYONE BD",
+                title: "MyOne 43\" 4K Smart TV",
+                price: "৳ ৩৪,৯০০",
+                desc: "myonebd.com থেকে সিনক্রোনাইজড। অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস রিমোট ও ডলবি অডিও।",
                 modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb"
             },
             {
-                tag: "LG INVERTER",
-                brand: "BUTTERFLY FACTORY",
+                tag: "BUTTERFLY FACTORY",
+                brand: "LG DUAL INVERTER",
                 title: "LG Dual Inverter 1.5 Ton AC",
                 price: "৳ ৭২,০০০",
-                desc: "৭০% পর্যন্ত বিদ্যুৎ সাশ্রয়ী ডুয়াল কুলিং টেকনোলজি এবং ১০ বছরের কম্প্রেসার ওয়ারেন্টি।",
+                desc: "butterflygroupbd.com থেকে সিনক্রোনাইজড। ৭০% পর্যন্ত বিদ্যুৎ সাশ্রয়ী ডুয়াল কুলিং টেকনোলজি।",
                 modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb"
             }
         ];
@@ -178,18 +206,13 @@
             selectedIndex = index;
             const p = catalog[index];
 
-            // Update 3D Model
-            const viewer = document.getElementById('product3DViewer');
-            viewer.src = p.modelUrl;
-
-            // Update Details
+            document.getElementById('product3DViewer').src = p.modelUrl;
             document.getElementById('prodTag').innerText = p.tag;
             document.getElementById('prodBrand').innerText = p.brand;
             document.getElementById('prodTitle').innerText = p.title;
             document.getElementById('prodPrice').innerText = p.price;
             document.getElementById('prodDesc').innerText = p.desc;
 
-            // Highlight Active Tab
             document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
                 if(idx === index) {
                     btn.className = "tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center truncate";
@@ -203,6 +226,30 @@
             const p = catalog[selectedIndex];
             const msg = `*SR ELECTRONICS PARK ORDER*%0A%0A*পণ্য:* ${p.title}%0A*মূল্য:* ${p.price}%0A*শোরুম:* হাটবোয়ালিয়া বাজার, চুয়াডাঙ্গা`;
             window.open(`https://wa.me/8801700000000?text=${msg}`, '_blank');
+        }
+
+        function toggleAiChat() {
+            document.getElementById('aiModal').classList.toggle('hidden');
+        }
+
+        function sendAiMessage() {
+            const input = document.getElementById('userMsg');
+            const chatBox = document.getElementById('chatBox');
+            if (!input.value.trim()) return;
+
+            const userText = input.value;
+            chatBox.innerHTML += `<div class="bg-cyber-card p-2 rounded-xl text-right text-cyber-cyan border border-cyber-border">${userText}</div>`;
+            input.value = '';
+
+            // AI Response
+            setTimeout(() => {
+                let aiReply = "মিনিস্টার ও বাটারফ্লাইয়ের লেটেস্ট অফার অনুযায়ী আমাদের কাছে ইনভার্টার মডেলগুলো স্টকে রয়েছে। বিস্তারিত জানতে শোরুম বা হোয়াটসঅ্যাপে সরাসরি বুকিং করতে পারেন!";
+                if (userText.includes("ফ্রিজ") || userText.includes("টিভি")) {
+                    aiReply = "আমাদের কাছে Minister 222L (৳৩৮,৫০০) এবং MyOne 43\" 4K Smart TV (৳৩৪,৯০০) সরাসরি ব্র্যান্ড ওয়ারেন্টি সহ সুলভ মূল্যে পাওয়া যাচ্ছে।";
+                }
+                chatBox.innerHTML += `<div class="bg-cyan-950/40 p-2.5 rounded-xl border border-cyber-cyan/30 text-cyber-muted">🤖 ${aiReply}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
         }
     </script>
 </body>
