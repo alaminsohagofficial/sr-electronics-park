@@ -247,7 +247,217 @@
       if (currentMesh) scene.remove(currentMesh);
 
       if (type === 'lg_fridge') currentMesh = createFridge();
-      else if (type === 'ecoplus_tv') currentMesh = createTV();
+      else if (type === 'ecoplus_tv') currentMesh = createTV();<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR Electronics Park | salsabilahelectronics.com</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#0f172a',
+                        brandBlue: '#0284c7',
+                        brandGold: '#eab308'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+    <!-- Header & Navigation -->
+    <header class="bg-brandDark text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-bolt-lightning text-brandGold text-2xl"></i>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">SR Electronics Park</h1>
+                    <p class="text-xs text-slate-400">Official Partner: Butterfly, LG & Minister</p>
+                </div>
+            </div>
+            <div class="w-full md:w-auto mt-3 md:mt-0 flex items-center space-x-2">
+                <input id="searchInput" type="text" placeholder="পণ্য খুঁজুন..." class="px-3 py-1.5 rounded bg-slate-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brandBlue border border-slate-700 w-full md:w-64">
+                <button onclick="filterProducts()" class="bg-brandBlue px-4 py-1.5 rounded text-sm hover:bg-sky-600 transition">খুঁজুন</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="bg-gradient-to-r from-slate-900 to-sky-950 text-white py-12 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-3">সেরা ব্র্যান্ডের আসল ইলেকট্রনিক্স পণ্য</h2>
+            <p class="text-slate-300 text-sm md:text-base mb-6">বাটারফ্লাই ও মিনিস্টার হাই-টেক পার্ক অনুমোদিত নির্ভরযোগ্য শোরুম</p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="setFilter('all')" class="bg-white text-slate-900 px-4 py-2 rounded-full text-xs font-semibold shadow hover:bg-slate-100">সকল পণ্য</button>
+                <button onclick="setFilter('Refrigerator')" class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs font-semibold hover:border-brandBlue">রেফ্রিজারেটর</button>
+                <button onclick="setFilter('Smart TV')" class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs font-semibold hover:border-brandBlue">স্মার্ট টিভি</button>
+                <button onclick="setFilter('AC')" class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs font-semibold hover:border-brandBlue">এয়ার কন্ডিশনার</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 py-10">
+        <!-- Section Title -->
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-bold border-l-4 border-brandBlue pl-3">শোরুম ক্যাটালগ</h3>
+            <span id="productCount" class="text-sm text-slate-500">দেখাচ্ছে ৪টি পণ্য</span>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Products will be injected via JS -->
+        </div>
+
+        <!-- Digital Warranty Tracker Section -->
+        <section class="mt-16 bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200">
+            <div class="max-w-2xl mx-auto text-center">
+                <i class="fa-solid fa-shield-halved text-4xl text-brandBlue mb-3"></i>
+                <h4 class="text-xl font-bold mb-2">ডিজিটাল ওয়ারেন্টি চেক</h4>
+                <p class="text-slate-600 text-sm mb-4">আপনার পণ্যের সিরিয়াল নম্বর দিয়ে অফিসিয়াল ওয়ারেন্টির মেয়াদ যাচাই করুন।</p>
+                <div class="flex gap-2">
+                    <input type="text" id="warrantyInput" placeholder="ইনভয়েস বা সিরিয়াল নম্বর দিন (উদাঃ SR-LG-101)" class="flex-1 px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brandBlue">
+                    <button onclick="checkWarranty()" class="bg-brandDark text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-slate-800">চেক করুন</button>
+                </div>
+                <div id="warrantyResult" class="mt-4 text-sm font-medium"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brandDark text-slate-400 py-8 border-t border-slate-800 text-center text-xs">
+        <p class="text-slate-300 font-medium mb-1">SR Electronics Park &copy; 2026 | salsabilahelectronics.com</p>
+        <p>Founder & Managing Partner: MD. AL AMIN SOHAG</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        const products = [
+            {
+                id: "SR-LG-101",
+                name: "LG Smart Inverter Refrigerator",
+                category: "Refrigerator",
+                brand: "Butterfly Factory",
+                price: "৳ ৭৮,৫০০",
+                desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ও হাই-কুলিং প্রযুক্তি।",
+                warranty: "১০ বছরের কম্প্রেসার ওয়ারেন্টি",
+                tag: "Best Seller"
+            },
+            {
+                id: "SR-MIN-202",
+                name: "Minister 43\" 4K Smart Android TV",
+                category: "Smart TV",
+                brand: "Minister Hi-Tech",
+                price: "৳ ৩৮,৯০০",
+                desc: "ভয়েস কন্ট্রোল, বেজেল-লেস প্যানেল এবং অফিশিয়াল অ্যান্ড্রয়েড ওএস।",
+                warranty: "৪ বছরের প্যানেল ওয়ারেন্টি",
+                tag: "Offer"
+            },
+            {
+                id: "SR-LG-303",
+                name: "LG Dual Inverter 1.5 Ton AC",
+                category: "AC",
+                brand: "Butterfly Factory",
+                price: "৳ ৭২,০০০",
+                desc: "৭০% পর্যন্ত বিদ্যুৎ সাশ্রয়ী দ্রুত কুলিং প্রযুক্তি সম্পন্ন ইনভার্টার এসি।",
+                warranty: "১০ বছরের কম্প্রেসার ওয়ারেন্টি",
+                tag: "New"
+            },
+            {
+                id: "SR-MIN-404",
+                name: "Minister Ultra Wash Refrigerator",
+                category: "Refrigerator",
+                brand: "Minister Hi-Tech",
+                price: "৳ ৪৪,৫০০",
+                desc: "পরিবার ও দীর্ঘমেয়াদি সতেজতার জন্য আকর্ষণীয় ডিজাইনের রেফ্রিজারেটর।",
+                warranty: "১২ বছরের কম্প্রেসার ওয়ারেন্টি",
+                tag: "Popular"
+            }
+        ];
+
+        let currentCategory = "all";
+
+        function renderProducts(list) {
+            const grid = document.getElementById("productGrid");
+            grid.innerHTML = "";
+            document.getElementById("productCount").innerText = `দেখাচ্ছে ${list.length}টি পণ্য`;
+
+            list.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition";
+                card.innerHTML = `
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-[11px] font-bold uppercase bg-sky-100 text-sky-800 px-2 py-0.5 rounded">${p.brand}</span>
+                            <span class="text-[11px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-semibold">${p.tag}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${p.name}</h4>
+                        <div class="text-xs text-slate-400 mb-2">ID: ${p.id}</div>
+                        <p class="text-xs text-slate-600 mb-4">${p.desc}</p>
+                        <div class="text-xs text-emerald-600 font-semibold mb-3 flex items-center">
+                            <i class="fa-solid fa-shield mr-1"></i> ${p.warranty}
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-base font-extrabold text-slate-900">${p.price}</span>
+                        <button onclick="orderNow('${p.name}')" class="bg-brandBlue text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-sky-600 transition">অর্ডার করুন</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function setFilter(cat) {
+            currentCategory = cat;
+            if(cat === "all") {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        function filterProducts() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.brand.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
+
+        function checkWarranty() {
+            const val = document.getElementById("warrantyInput").value.trim().toUpperCase();
+            const res = document.getElementById("warrantyResult");
+            const found = products.find(p => p.id === val);
+
+            if(found) {
+                res.innerHTML = `<span class="text-emerald-600">✓ বৈধ পণ্য: ${found.name} (${found.brand}) - ${found.warranty} সক্রিয় আছে।</span>`;
+            } else if(val === "") {
+                res.innerHTML = `<span class="text-amber-600">অনুগ্রহ করে একটি সিরিয়াল নম্বর লিখুন।</span>`;
+            } else {
+                res.innerHTML = `<span class="text-rose-600">✕ কোনো রেকর্ড পাওয়া যায়নি। অনুগ্রহ করে সঠিক সিরিয়াল নম্বর দিন।</span>`;
+            }
+        }
+
+        function orderNow(item) {
+            alert(`"${item}" অর্ডার করার জন্য শোরুম হটলাইনে রিডাইরেক্ট করা হচ্ছে।`);
+        }
+
+        // Initialize display
+        renderProducts(products);
+    </script>
+</body>
+</html>
+
       else if (type === 'pixel_phone') currentMesh = createPixel();
       else if (type === 'samsung_phone') currentMesh = createSamsung();
 
