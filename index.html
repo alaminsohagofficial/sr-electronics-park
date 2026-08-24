@@ -1,394 +1,125 @@
-```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR ELECTRONICS PARK - Official Cyber Showcase</title>
-    <!-- Tailwind CSS CDN -->
+    <title>SR ELECTRONICS PARK</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            bg: '#03060a',
-                            card: '#0a0f18',
-                            border: '#162232',
-                            cyan: '#00f0ff',
-                            cyanDark: '#009ba6',
-                            orange: '#ff5e00',
-                            textMuted: '#7f93b2'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Three.js for 3D Cyber Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Hind+Siliguri:wght@400;600;700&display=swap');
-        
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: #03060a;
-            overflow-x: hidden;
-        }
-
-        .font-cyber {
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        /* Cyber Glow Effects */
-        .glow-cyan {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
-        }
-        .glow-cyan-lg {
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
-        }
-        .glow-btn {
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-        .glow-btn:hover {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
-        }
-
-        /* Three.js Canvas Container */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
+        body { background-color: #05080f; margin: 0; overflow: hidden; font-family: sans-serif; }
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; }
+        .ui-layer { position: relative; z-index: 10; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; box-sizing: border-box; }
+        .glow-card { box-shadow: 0 0 25px rgba(0, 240, 255, 0.25); border: 1px solid rgba(0, 240, 255, 0.4); }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col justify-between selection:bg-cyber-cyan selection:text-black">
+<body class="text-white">
 
-    <!-- 3D Background Canvas -->
-    <div id="canvas-container"></div>
+    <div id="canvas-bg"></div>
 
-    <!-- Content Wrapper -->
-    <div class="content-layer min-h-screen flex flex-col justify-between p-3 sm:p-5">
-
-        <!-- Top Header Navigation -->
-        <header class="max-w-md w-full mx-auto flex justify-between items-center pt-2">
-            <div class="border border-cyber-border/80 bg-cyber-card/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border-l-4 border-l-cyber-cyan">
-                <h1 class="text-base sm:text-lg font-black tracking-wider text-cyber-cyan font-cyber">
-                    SR ELECTRONICS PARK
-                </h1>
-                <p class="text-[9px] text-cyber-textMuted tracking-widest uppercase font-semibold">
-                    Official Showroom & Dealership
-                </p>
+    <div class="ui-layer max-w-md mx-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center bg-[#0d131f]/90 border border-cyan-500/30 p-3 rounded-2xl backdrop-blur-md">
+            <div>
+                <h1 class="text-base font-black text-cyan-400 tracking-wider">SR ELECTRONICS PARK</h1>
+                <p class="text-[9px] text-gray-400 uppercase">Showroom Product 3D Showcase</p>
             </div>
-            <button onclick="openHelpModal()" class="border border-cyber-cyan/80 bg-cyber-card/80 text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all px-4 py-2 rounded-2xl text-xs font-bold backdrop-blur-md flex items-center gap-1.5 shadow-md">
-                <i class="fa-solid fa-headset"></i> হেল্প
+            <button onclick="alert('যোগাযোগ: হাটবোয়ালিয়া বাজার, চুয়াডাঙ্গা')" class="border border-cyan-400 text-cyan-400 text-xs px-3 py-1 rounded-full font-bold">
+                হেল্প
             </button>
-        </header>
+        </div>
 
-        <!-- Main Dynamic Showcase Card -->
-        <main class="max-w-md w-full mx-auto my-auto py-4">
-            
-            <div id="productCard" class="bg-cyber-card/85 border border-cyber-cyan/30 rounded-3xl p-5 sm:p-6 glow-cyan backdrop-blur-xl transition-all duration-500 relative overflow-hidden">
-                
-                <!-- Corner Cyber Accent Lines -->
-                <div class="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-cyber-cyan/60 rounded-tr-3xl"></div>
-                <div class="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-cyber-cyan/60 rounded-bl-3xl"></div>
-
-                <!-- Category Badge & Brand -->
-                <div class="flex justify-between items-center mb-3">
-                    <span id="prodTag" class="text-[10px] uppercase font-extrabold tracking-widest bg-cyan-950/80 border border-cyber-cyan/50 text-cyber-cyan px-2.5 py-1 rounded-lg">
-                        BUTTERFLY FACTORY
-                    </span>
-                    <span id="prodBrand" class="text-[11px] font-bold text-cyber-textMuted tracking-wider font-cyber">
-                        LG ELECTRONICS
-                    </span>
-                </div>
-
-                <!-- Product Title -->
-                <h2 id="prodTitle" class="text-xl sm:text-2xl font-black text-white tracking-tight mb-1">
-                    LG Smart Refrigerator
-                </h2>
-
-                <!-- Price Tag -->
-                <div id="prodPrice" class="text-2xl sm:text-3xl font-black text-cyber-cyan mb-3 font-cyber">
-                    ৳ ৭৮,৫০০
-                </div>
-
-                <!-- Product Description -->
-                <p id="prodDesc" class="text-xs text-cyber-textMuted leading-relaxed mb-6 font-medium">
-                    বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং সিস্টেম।
-                </p>
-
-                <!-- Booking Action Button -->
-                <button onclick="openBookingModal()" class="w-full bg-transparent hover:bg-cyber-cyan hover:text-black border-2 border-cyber-cyan text-cyber-cyan py-3 rounded-2xl text-sm font-black transition-all duration-300 flex items-center justify-center gap-2 glow-btn">
-                    <i class="fa-solid fa-bolt"></i> বুকিং দিন
-                </button>
-            </div>
-
-        </main>
-
-        <!-- Bottom Category Switcher Tabs -->
-        <footer class="max-w-md w-full mx-auto pb-2">
-            <div class="bg-cyber-card/90 border border-cyber-border/80 p-2.5 rounded-3xl backdrop-blur-xl grid grid-cols-2 gap-2 shadow-2xl">
-                <button onclick="switchProduct(0)" id="tab-0" class="tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-3 rounded-2xl transition-all text-center truncate shadow-sm">
-                    LG Refrigerator
-                </button>
-                <button onclick="switchProduct(1)" id="tab-1" class="tab-btn bg-transparent text-cyber-textMuted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-3 rounded-2xl transition-all text-center truncate">
-                    ECO+ Smart TV
-                </button>
-                <button onclick="switchProduct(2)" id="tab-2" class="tab-btn bg-transparent text-cyber-textMuted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-3 rounded-2xl transition-all text-center truncate">
-                    Minister Direct Cool
-                </button>
-                <button onclick="switchProduct(3)" id="tab-3" class="tab-btn bg-transparent text-cyber-textMuted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-3 rounded-2xl transition-all text-center truncate">
-                    Samsung Galaxy
-                </button>
-            </div>
-        </footer>
-
-    </div>
-
-    <!-- Booking Modal Box -->
-    <div id="bookingModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-cyber-cyan rounded-3xl max-w-sm w-full p-6 relative glow-cyan-lg">
-            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-cyber-textMuted hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="flex items-center gap-2 mb-2">
-                <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
-                <h3 class="text-base font-extrabold text-white">ডাইরেক্ট বুকিং শোরুম</h3>
-            </div>
-            <p id="modalProdInfo" class="text-xs text-cyber-cyan font-bold mb-4 bg-cyan-950/60 p-2 rounded-xl border border-cyber-cyan/30">
-                LG Smart Refrigerator - ৳ ৭৮,৫০০
+        <!-- Product Card -->
+        <div class="bg-[#0c121d]/90 rounded-3xl p-5 glow-card backdrop-blur-lg my-auto">
+            <span id="pTag" class="text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-500/40 px-2 py-0.5 rounded font-bold uppercase">
+                BUTTERFLY FACTORY
+            </span>
+            <h2 id="pTitle" class="text-xl font-black mt-2 text-white">LG Smart Refrigerator</h2>
+            <div id="pPrice" class="text-2xl font-black text-cyan-400 my-1">৳ ৭৮,৫০০</div>
+            <p id="pDesc" class="text-xs text-gray-300 leading-relaxed mb-4">
+                বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের ওয়ারেন্টি।
             </p>
-
-            <form onsubmit="submitBooking(event)" class="space-y-3 text-xs">
-                <div>
-                    <label class="block text-cyber-textMuted mb-1 font-semibold">আপনার নাম:</label>
-                    <input type="text" id="custName" required placeholder="মোঃ আলামিন সোহাগ" class="w-full bg-cyber-bg border border-cyber-border rounded-xl p-2.5 text-white focus:outline-none focus:border-cyber-cyan">
-                </div>
-                <div>
-                    <label class="block text-cyber-textMuted mb-1 font-semibold">মোবাইল নম্বর:</label>
-                    <input type="tel" id="custPhone" required placeholder="০১XXXXXXXXX" class="w-full bg-cyber-bg border border-cyber-border rounded-xl p-2.5 text-white focus:outline-none focus:border-cyber-cyan">
-                </div>
-                <div>
-                    <label class="block text-cyber-textMuted mb-1 font-semibold">ডেলিভারি ঠিকানা:</label>
-                    <input type="text" id="custAddress" required placeholder="হাটবোয়ালিয়া বাজার, চুয়াডাঙ্গা" class="w-full bg-cyber-bg border border-cyber-border rounded-xl p-2.5 text-white focus:outline-none focus:border-cyber-cyan">
-                </div>
-
-                <div class="pt-2">
-                    <button type="submit" class="w-full bg-cyber-cyan text-black py-3 rounded-xl font-black text-xs hover:bg-cyber-cyanDark transition-all flex items-center justify-center gap-2 shadow-lg">
-                        <i class="fa-solid fa-paper-plane"></i> WhatsApp-এ বুকিং কনফার্ম করুন
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Help Modal -->
-    <div id="helpModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-cyber-border rounded-3xl max-w-xs w-full p-6 text-center shadow-2xl">
-            <div class="w-12 h-12 bg-cyan-950 border border-cyber-cyan rounded-2xl flex items-center justify-center text-cyber-cyan text-xl mx-auto mb-3">
-                <i class="fa-solid fa-building-circle-check"></i>
-            </div>
-            <h3 class="text-base font-bold text-cyber-cyan mb-1 font-cyber">SR ELECTRONICS PARK</h3>
-            <p class="text-[11px] text-cyber-textMuted mb-4">অফিশিয়াল ডিলারশিপ ও সার্ভিস পয়েন্ট</p>
-
-            <div class="text-xs text-slate-300 space-y-2 bg-cyber-bg p-3 rounded-2xl border border-cyber-border text-left mb-4">
-                <p><strong>প্রোপাইটর:</strong> মোঃ আলামিন সোহাগ</p>
-                <p><strong>ঠিকানা:</strong> হাটবোয়ালিয়া বাজার, আলমডাঙ্গা, চুয়াডাঙ্গা</p>
-                <p><strong>পার্টনারশিপ:</strong> বাটারফ্লাই গ্রুপ ও মিনিস্টার হাই-টেক পার্ক</p>
-            </div>
-
-            <button onclick="closeHelpModal()" class="w-full bg-cyber-border hover:bg-cyber-cyan hover:text-black text-white py-2.5 rounded-xl text-xs font-bold transition-all">
-                বন্ধ করুন
+            <button onclick="orderViaWA()" class="w-full bg-transparent hover:bg-cyan-400 hover:text-black border-2 border-cyan-400 text-cyan-400 py-2.5 rounded-xl font-extrabold text-sm transition-all">
+                বুকিং দিন
             </button>
         </div>
+
+        <!-- Category Tabs -->
+        <div class="bg-[#0d131f]/90 border border-cyan-500/30 p-2 rounded-2xl backdrop-blur-md grid grid-cols-2 gap-2">
+            <button onclick="changeProduct(0)" id="b0" class="bg-cyan-400 text-black text-xs font-bold py-2 rounded-xl">LG Refrigerator</button>
+            <button onclick="changeProduct(1)" id="b1" class="border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl">ECO+ Smart TV</button>
+            <button onclick="changeProduct(2)" id="b2" class="border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl">Minister Direct Cool</button>
+            <button onclick="changeProduct(3)" id="b3" class="border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl">Samsung Galaxy</button>
+        </div>
     </div>
 
-    <!-- Interactive Logic Script -->
     <script>
-        // Products Catalog Array
-        const products = [
-            {
-                tag: "BUTTERFLY FACTORY",
-                brand: "LG ELECTRONICS",
-                title: "LG Smart Refrigerator",
-                price: "৳ ৭৮,৫০০",
-                desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং সিস্টেম।"
-            },
-            {
-                tag: "OFFICIAL BUTTERFLY",
-                brand: "ECO+ BRAND",
-                title: "ECO+ 43\" 4K Smart TV",
-                price: "৳ ৩৬,৯০০",
-                desc: "অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস কন্ট্রোল রিমোট, ডলবি অডিও সাউন্ড সিস্টেম এবং ২ বছরের প্যানেল ওয়ারেন্টি।"
-            },
-            {
-                tag: "MINISTER HI-TECH",
-                brand: "MINISTER GROUP",
-                title: "Minister Direct Cool 222L",
-                price: "৳ ৩৮,৫০০",
-                desc: "মিনিস্টার হাই-টেক পার্কের পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও অ্যান্টি-ব্যাকটেরিয়াল ডোর গ্যাসকেট।"
-            },
-            {
-                tag: "FLAGSHIP MOBILE",
-                brand: "SAMSUNG GALAXY",
-                title: "Samsung Galaxy S24 Ultra",
-                price: "৳ ১,৪৯,০০০",
-                desc: "অফিশিয়াল বিটিআরসি অনুমোদিত, গ্যালাক্সি এআই সাপোর্ট, টাইটানিয়াম ফ্রেম এবং ২০০ মেগাপিক্সেল ক্যামেরা।"
-            }
+        const prods = [
+            { tag: "BUTTERFLY FACTORY", title: "LG Smart Refrigerator", price: "৳ ৭৮,৫০০", desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং।" },
+            { tag: "OFFICIAL BUTTERFLY", title: "ECO+ 43\" 4K Smart TV", price: "৳ ৩৬,৯০০", desc: "অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস কন্ট্রোল রিমোট এবং ডলবি ডিজিটাল অডিও।" },
+            { tag: "MINISTER HI-TECH", title: "Minister Ultra Inverter Fridge", price: "৳ ৪৪,৫০০", desc: "মিনিস্টার হাই-টেক পার্কের পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও দ্রুত বরফ জমার সুবিধা।" },
+            { tag: "FLAGSHIP SMARTPHONE", title: "Samsung Galaxy S24 Ultra", price: "৳ ১,৪৯,০০০", desc: "অফিশিয়াল বিটিআরসি অনুমোদিত স্মার্টফোন, গ্যালাক্সি এআই ও ২০০ মেগাপিক্সেল ক্যামেরা।" }
         ];
 
-        let currentIndex = 0;
+        let curr = 0;
 
-        function switchProduct(index) {
-            currentIndex = index;
-            const p = products[index];
+        function changeProduct(idx) {
+            curr = idx;
+            const p = prods[idx];
+            document.getElementById('pTag').innerText = p.tag;
+            document.getElementById('pTitle').innerText = p.title;
+            document.getElementById('pPrice').innerText = p.price;
+            document.getElementById('pDesc').innerText = p.desc;
 
-            // Card Transition Effect
-            const card = document.getElementById("productCard");
-            card.style.opacity = "0.3";
-            card.style.transform = "scale(0.98)";
-
-            setTimeout(() => {
-                document.getElementById("prodTag").innerText = p.tag;
-                document.getElementById("prodBrand").innerText = p.brand;
-                document.getElementById("prodTitle").innerText = p.title;
-                document.getElementById("prodPrice").innerText = p.price;
-                document.getElementById("prodDesc").innerText = p.desc;
-
-                card.style.opacity = "1";
-                card.style.transform = "scale(1)";
-            }, 200);
-
-            // Update Tab Highlight
-            document.querySelectorAll(".tab-btn").forEach((btn, idx) => {
-                if (idx === index) {
-                    btn.className = "tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-3 rounded-2xl transition-all text-center truncate shadow-sm";
+            for(let i=0; i<4; i++) {
+                const b = document.getElementById('b' + i);
+                if(i === idx) {
+                    b.className = "bg-cyan-400 text-black text-xs font-bold py-2 rounded-xl";
                 } else {
-                    btn.className = "tab-btn bg-transparent text-cyber-textMuted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-3 rounded-2xl transition-all text-center truncate";
+                    b.className = "border border-gray-700 text-gray-400 text-xs font-semibold py-2 rounded-xl";
                 }
-            });
-
-            // Rotate 3D showcase mesh color based on selection
-            if (showcaseMesh) {
-                const colors = [0x00f0ff, 0x0083ca, 0xff5e00, 0xa855f7];
-                showcaseMesh.material.color.setHex(colors[index]);
             }
         }
 
-        // Modal Controls
-        function openBookingModal() {
-            const p = products[currentIndex];
-            document.getElementById("modalProdInfo").innerText = `${p.title} - ${p.price}`;
-            document.getElementById("bookingModal").classList.remove("hidden");
+        function orderViaWA() {
+            const p = prods[curr];
+            const msg = `*SR ELECTRONICS PARK ORDER*%0A%0A*পণ্য:* ${p.title}%0A*মূল্য:* ${p.price}`;
+            window.open(`https://wa.me/8801700000000?text=${msg}`, '_blank');
         }
 
-        function closeBookingModal() {
-            document.getElementById("bookingModal").classList.add("hidden");
-        }
+        // 3D Perspective Wireframe Grid
+        const container = document.getElementById('canvas-bg');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 2, 7);
+        camera.lookAt(0, 0, 0);
 
-        function openHelpModal() {
-            document.getElementById("helpModal").classList.remove("hidden");
-        }
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
 
-        function closeHelpModal() {
-            document.getElementById("helpModal").classList.add("hidden");
-        }
+        const grid = new THREE.GridHelper(40, 25, 0x00f0ff, 0x112233);
+        grid.position.y = -1.5;
+        scene.add(grid);
 
-        // Send Order via WhatsApp
-        function submitBooking(e) {
-            e.preventDefault();
-            const p = products[currentIndex];
-            const name = document.getElementById("custName").value;
-            const phone = document.getElementById("custPhone").value;
-            const address = document.getElementById("custAddress").value;
-
-            const text = `*SR ELECTRONICS PARK - নতুন অর্ডার*%0A%0A*পণ্য:* ${p.title}%0A*মূল্য:* ${p.price}%0A*কাস্টমার নাম:* ${name}%0A*মোবাইল:* ${phone}%0A*ঠিকানা:* ${address}`;
-            
-            // Redirect to WhatsApp
-            window.open(`https://wa.me/8801700000000?text=${text}`, '_blank');
-            closeBookingModal();
-        }
-
-        // 3D Three.js Perspective Cyber Grid Background Implementation
-        let scene, camera, renderer, showcaseMesh;
-
-        function init3D() {
-            const container = document.getElementById('canvas-container');
-            
-            scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x03060a, 0.035);
-
-            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 3, 10);
-            camera.lookAt(0, 1, 0);
-
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            container.appendChild(renderer.domElement);
-
-            // Cyber 3D Grid Floor
-            const gridHelper = new THREE.GridHelper(60, 40, 0x00f0ff, 0x162232);
-            gridHelper.position.y = -2;
-            scene.add(gridHelper);
-
-            // 3D Floating Cyber Frame Showcase Box (Seen in screenshot)
-            const geometry = new THREE.BoxGeometry(3.5, 4.5, 2.5);
-            const wireframe = new THREE.WireframeGeometry(geometry);
-            const lineMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, linewidth: 1.5 });
-            showcaseMesh = new THREE.LineSegments(wireframe, lineMat);
-            showcaseMesh.position.set(0, 1.2, -1);
-            scene.add(showcaseMesh);
-
-            // Ambient Light
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-            scene.add(ambientLight);
-
-            // Window Resize Handler
-            window.addEventListener('resize', onWindowResize);
-
-            // Start Animation Loop
-            animate();
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
+        const boxGeo = new THREE.BoxGeometry(2.5, 3.5, 2);
+        const wire = new THREE.WireframeGeometry(boxGeo);
+        const box = new THREE.LineSegments(wire, new THREE.LineBasicMaterial({ color: 0x00f0ff }));
+        box.position.set(0, 0.5, 0);
+        scene.add(box);
 
         function animate() {
             requestAnimationFrame(animate);
-
-            if (showcaseMesh) {
-                showcaseMesh.rotation.y += 0.006;
-                showcaseMesh.rotation.x += 0.002;
-            }
-
+            box.rotation.y += 0.008;
             renderer.render(scene, camera);
         }
+        animate();
 
-        // Initialize 3D Stage on Load
-        window.onload = function() {
-            init3D();
-        };
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
     </script>
 </body>
 </html>
-```
