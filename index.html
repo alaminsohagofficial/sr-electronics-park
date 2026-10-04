@@ -3,254 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR ELECTRONICS PARK - 3D Virtual Showroom & AI Sync</title>
-    <!-- Tailwind CSS -->
+    <title>SR Electronics Park | Ledger Portal & Audit Certificate 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            bg: '#040711',
-                            card: '#0b111e',
-                            border: '#1b2a42',
-                            cyan: '#00f0ff',
-                            cyanDark: '#009ba6',
-                            muted: '#8a9fb8'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Model Viewer Engine -->
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #040711;
-            font-family: system-ui, -apple-system, sans-serif;
-            overflow-x: hidden;
-        }
-        model-viewer {
-            width: 100%;
-            height: 260px;
-            background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, rgba(4,7,17,0) 70%);
-            border-radius: 1.5rem;
-            --poster-color: transparent;
-        }
-        .glow-box {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
-        }
+        body { font-family: 'Hind Siliguri', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col justify-between p-3 sm:p-5 selection:bg-cyber-cyan selection:text-black">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
 
-    <!-- Top Header -->
-    <header class="max-w-md w-full mx-auto flex justify-between items-center bg-cyber-card/90 border border-cyber-border p-3 rounded-2xl backdrop-blur-md">
-        <div>
-            <h1 class="text-base font-black text-cyber-cyan tracking-wide flex items-center gap-1.5">
-                <i class="fa-solid fa-cube text-sm"></i> SR ELECTRONICS PARK
-            </h1>
-            <p class="text-[9px] text-cyber-muted uppercase tracking-wider">Synced: Minister • MyOne • Butterfly</p>
+    <!-- Top Status Bar -->
+    <div class="bg-slate-950 border-b border-slate-800 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>Butterfly Central Audit: 100% Reconciled & Certified</span>
+            </div>
+            <div class="font-mono text-amber-400">ID: #3000002272</div>
         </div>
-        <button onclick="toggleAiChat()" class="bg-cyan-950 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black text-xs px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1">
-            <i class="fa-solid fa-robot"></i> Gemini AI
-        </button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-md">SR</div>
+                <div>
+                    <h1 class="text-lg font-bold text-white">SR Electronics Park</h1>
+                    <p class="text-xs text-slate-400">Proprietor: MD. Al Amin Sohag | Dealer of the Year 2026</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right text-xs">
+                    <p class="text-slate-400">Group Volume</p>
+                    <p class="font-mono font-bold text-emerald-400">BDT 118.00 Crore</p>
+                </div>
+                <button onclick="toggleAiModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
+                    <span>✨ Live AI Assistant</span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <!-- Main 3D Showcase Stage -->
-    <main class="max-w-md w-full mx-auto my-auto py-3">
-        <div class="bg-cyber-card border border-cyber-cyan/40 rounded-3xl p-4 sm:p-5 glow-box relative">
-            
-            <!-- 3D Interactive Model Viewer with AR -->
-            <div class="relative w-full rounded-2xl overflow-hidden border border-cyber-border/80 bg-black/40">
-                <model-viewer 
-                    id="product3DViewer"
-                    src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb"
-                    alt="3D Electronics Product"
-                    auto-rotate
-                    camera-controls
-                    touch-action="pan-y"
-                    shadow-intensity="1.5"
-                    exposure="1"
-                    ar
-                    ar-modes="webxr scene-viewer quick-look">
-                    <button slot="ar-button" class="absolute bottom-3 right-3 bg-cyber-cyan text-black px-3 py-1.5 rounded-xl text-[11px] font-black shadow-lg flex items-center gap-1.5">
-                        <i class="fa-solid fa-camera"></i> ঘরে দেখুন (AR)
-                    </button>
-                </model-viewer>
-                
-                <div class="absolute top-2 left-2 pointer-events-none bg-black/60 px-2 py-0.5 rounded-md text-[9px] text-cyber-cyan font-bold border border-cyber-cyan/30">
-                    <i class="fa-solid fa-arrows-rotate"></i> 360° ঘুরে দেখুন
-                </div>
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
+
+        <!-- Summary Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
+                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">YTD Sales (Added)</p>
+                <h3 class="text-2xl font-bold font-mono text-white mt-1">BDT 8.13 Cr</h3>
             </div>
-
-            <!-- Product Info -->
-            <div class="mt-4">
-                <div class="flex justify-between items-center mb-1">
-                    <span id="prodTag" class="text-[10px] uppercase font-bold text-cyber-cyan bg-cyan-950/80 border border-cyber-cyan/40 px-2 py-0.5 rounded">
-                        BUTTERFLY GROUP
-                    </span>
-                    <span id="prodBrand" class="text-[11px] font-semibold text-cyber-muted">
-                        LG ELECTRONICS
-                    </span>
-                </div>
-                
-                <h2 id="prodTitle" class="text-xl font-black text-white mt-1">LG Smart Inverter Refrigerator</h2>
-                <div id="prodPrice" class="text-2xl font-black text-cyber-cyan my-1">৳ ৭৮,৫০০</div>
-                
-                <p id="prodDesc" class="text-xs text-cyber-muted leading-relaxed mb-4">
-                    বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট ডোর কুলিং সিস্টেম।
-                </p>
-
-                <!-- Booking Button -->
-                <button onclick="orderViaWA()" class="w-full bg-cyber-cyan hover:bg-cyber-cyanDark text-black py-3 rounded-2xl font-black text-sm transition-all shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-base"></i> অর্ডার / বুকিং নিশ্চিত করুন
-                </button>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
+                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Total Payments</p>
+                <h3 class="text-2xl font-bold font-mono text-emerald-400 mt-1">BDT 12.45 Cr+</h3>
             </div>
-
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
+                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Updated Ledger Balance</p>
+                <h3 class="text-2xl font-bold font-mono text-amber-400 mt-1">+8,12,99,791 BDT</h3>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
+                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Overdue Amount</p>
+                <h3 class="text-2xl font-bold font-mono text-blue-400 mt-1">0.00 BDT</h3>
+            </div>
         </div>
+
+        <!-- Consolidated Regional Branch Performance -->
+        <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl overflow-hidden shadow-sm">
+            <div class="p-6 border-b border-slate-700 bg-slate-900/50 flex justify-between items-center">
+                <div>
+                    <h3 class="text-base font-bold text-white">Consolidated Regional Branch Performance & Ledger Integration</h3>
+                    <p class="text-xs text-slate-400">YTD Sales & 8.13 Crore BDT Successful Addition</p>
+                </div>
+                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">Synced & Updated</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-300">
+                    <thead class="bg-slate-900 text-slate-400 uppercase text-xs font-bold border-b border-slate-700">
+                        <tr>
+                            <th class="px-6 py-3.5">Rank</th>
+                            <th class="px-6 py-3.5">Trade Name / Branch</th>
+                            <th class="px-6 py-3.5">Region</th>
+                            <th class="px-6 py-3.5">YTD Sales</th>
+                            <th class="px-6 py-3.5">RTGS Settled</th>
+                            <th class="px-6 py-3.5 text-right">Status / Growth</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700/50 font-medium">
+                        <tr class="bg-amber-950/20 hover:bg-slate-700/30">
+                            <td class="px-6 py-4 font-mono font-bold text-amber-400">#1</td>
+                            <td class="px-6 py-4 font-bold text-white">SR Electronics Park</td>
+                            <td class="px-6 py-4">Chuadanga</td>
+                            <td class="px-6 py-4 font-mono text-emerald-400">BDT 8.13 Cr (Added)</td>
+                            <td class="px-6 py-4 font-mono">BDT 1.94 Cr</td>
+                            <td class="px-6 py-4 text-right font-bold text-emerald-400">27% Regional Growth</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30">
+                            <td class="px-6 py-4 font-mono text-slate-400">#2</td>
+                            <td class="px-6 py-4">Dhaka Tech Hub</td>
+                            <td class="px-6 py-4">Dhaka</td>
+                            <td class="px-6 py-4 font-mono">BDT 6.75 Cr</td>
+                            <td class="px-6 py-4 font-mono">BDT 1.28 Cr</td>
+                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30">
+                            <td class="px-6 py-4 font-mono text-slate-400">#3</td>
+                            <td class="px-6 py-4">Rajshahi Traders</td>
+                            <td class="px-6 py-4">Rajshahi</td>
+                            <td class="px-6 py-4 font-mono">BDT 5.90 Cr</td>
+                            <td class="px-6 py-4 font-mono">BDT 95.5 Lac</td>
+                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30">
+                            <td class="px-6 py-4 font-mono text-slate-400">#4</td>
+                            <td class="px-6 py-4">Chattogram Electogram</td>
+                            <td class="px-6 py-4">Chattogram</td>
+                            <td class="px-6 py-4 font-mono">BDT 4.85 Cr</td>
+                            <td class="px-6 py-4 font-mono">BDT 88.4 Lac</td>
+                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </main>
 
-    <!-- Synchronized Category Tabs -->
-    <footer class="max-w-md w-full mx-auto pb-2">
-        <div class="bg-cyber-card border border-cyber-border p-2 rounded-2xl grid grid-cols-2 gap-2 shadow-xl">
-            <button onclick="changeShowcase(0)" id="t0" class="tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center truncate">
-                LG Refrigerator (Butterfly)
-            </button>
-            <button onclick="changeShowcase(1)" id="t1" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
-                Minister Direct Cool
-            </button>
-            <button onclick="changeShowcase(2)" id="t2" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
-                MyOne 4K Smart TV
-            </button>
-            <button onclick="changeShowcase(3)" id="t3" class="tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate">
-                LG Dual Inverter AC
-            </button>
-        </div>
-    </footer>
-
-    <!-- Gemini AI Assistant Modal -->
-    <div id="aiModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cyber-card border border-cyber-cyan rounded-3xl max-w-sm w-full p-5 flex flex-col h-[480px]">
-            <div class="flex justify-between items-center border-b border-cyber-border pb-3">
+    <!-- AI Assistant Floating / Modal Drawer -->
+    <div id="ai-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl flex flex-col h-[500px] shadow-2xl overflow-hidden">
+            <div class="p-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-robot text-cyber-cyan"></i>
-                    <h3 class="text-sm font-bold text-white">Gemini শোরুম অ্যাসিস্ট্যান্ট</h3>
+                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <h3 class="text-sm font-bold text-white">Gemini AI Audit & Ledger Assistant</h3>
                 </div>
-                <button onclick="toggleAiChat()" class="text-cyber-muted hover:text-white text-lg">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="toggleAiModal()" class="text-slate-400 hover:text-white font-bold px-2">✕</button>
             </div>
-
-            <!-- Chat Output -->
-            <div id="chatBox" class="flex-1 overflow-y-auto py-3 space-y-2 text-xs">
-                <div class="bg-cyan-950/40 p-2.5 rounded-xl border border-cyber-cyan/30 text-cyber-muted">
-                    👋 স্বাগতম! আমি মিনিস্টার, মাইওয়ান ও বাটারফ্লাই গ্রুপের অফিসিয়াল প্রোডাক্ট হেল্পার। কোন পণ্য সম্পর্কে জানতে চান?
+            <div id="ai-chat-box" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs">
+                <div class="bg-slate-800 p-3 rounded-xl text-slate-300">
+                    হ্যালো! ৮.১৩ কোটি টাকা (৮,১৩,০০,০০০ BDT) সেলস অ্যামাউন্ট লেজারের সাথে সফলভাবে যোগ করা হয়েছে। বর্তমান আপডেটকৃত ব্যালেন্স +৮,১২,৯৯,৭৯১ বিডিটি।
                 </div>
             </div>
-
-            <!-- Input Box -->
-            <div class="pt-2 border-t border-cyber-border flex gap-2">
-                <input type="text" id="userMsg" placeholder="যেমন: ৪০ হাজার টাকার মধ্যে সেরা ফ্রিজ..." class="flex-1 bg-cyber-bg border border-cyber-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyber-cyan">
-                <button onclick="sendAiMessage()" class="bg-cyber-cyan text-black px-3 py-2 rounded-xl font-bold text-xs hover:bg-cyber-cyanDark transition-all">
-                    পাঠান
-                </button>
+            <div class="p-3 bg-slate-950 border-t border-slate-800 flex gap-2">
+                <input type="text" id="ai-input" placeholder="যেমন: নতুন ব্যালেন্স কত?" class="flex-grow bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500" onkeypress="if(event.key === 'Enter') sendQueryToGemini()">
+                <button onclick="sendQueryToGemini()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold">সেন্ড</button>
             </div>
         </div>
     </div>
 
-    <!-- Logic Script -->
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-4 text-center text-xs border-t border-slate-800">
+        <p>Butterfly Marketing Ltd. Compliance, Audit & Banking Reconciliation Division.</p>
+    </footer>
+
     <script>
-        const OFFICIAL_WHATSAPP = "8801711995940";
+        const apiKey = typeof __api_key !== 'undefined' ? __api_key : "";
 
-        const catalog = [
-            {
-                tag: "BUTTERFLY GROUP",
-                brand: "LG ELECTRONICS",
-                title: "LG Smart Inverter Refrigerator",
-                price: "৳ ৭৮,৫০০",
-                desc: "বাটারফ্লাই ফ্যাক্টরিতে অ্যাসেম্বলকৃত অরিজিনাল ইনভার্টার ফ্রিজ। ১০ বছরের কম্প্রেসার ওয়ারেন্টি ও স্মার্ট কুলিং সিস্টেম।",
-                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb"
-            },
-            {
-                tag: "MINISTER HI-TECH",
-                brand: "MINISTER GROUP",
-                title: "Minister Direct Cool 222L",
-                price: "৳ ৩৮,৫০০",
-                desc: "পাওয়ার সেভিং ইনভার্টার টেকনোলজি ও অ্যান্টি-ব্যাকটেরিয়াল গ্যাসকেট সহ মিনিস্টার শো-রুম মডেল।",
-                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxInterleaved/glTF-Binary/BoxInterleaved.glb"
-            },
-            {
-                tag: "MYONE OFFICIAL",
-                brand: "MYONE BD",
-                title: "MyOne 43\" 4K Smart TV",
-                price: "৳ ৩৪,৯০০",
-                desc: "অফিশিয়াল অ্যান্ড্রয়েড ওএস, ভয়েস রিমোট ও ডলবি সাউন্ড সিস্টেম।",
-                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb"
-            },
-            {
-                tag: "BUTTERFLY FACTORY",
-                brand: "LG DUAL INVERTER",
-                title: "LG Dual Inverter 1.5 Ton AC",
-                price: "৳ ৭২,০০০",
-                desc: "৭০% পর্যন্ত বিদ্যুৎ সাশ্রয়ী ডুয়াল কুলিং টেকনোলজি সহ বাটারফ্লাই অফিশিয়াল ইনভার্টার এসি।",
-                modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb"
-            }
-        ];
-
-        let selectedIndex = 0;
-
-        function changeShowcase(index) {
-            selectedIndex = index;
-            const p = catalog[index];
-
-            document.getElementById('product3DViewer').src = p.modelUrl;
-            document.getElementById('prodTag').innerText = p.tag;
-            document.getElementById('prodBrand').innerText = p.brand;
-            document.getElementById('prodTitle').innerText = p.title;
-            document.getElementById('prodPrice').innerText = p.price;
-            document.getElementById('prodDesc').innerText = p.desc;
-
-            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
-                if(idx === index) {
-                    btn.className = "tab-btn bg-cyber-cyan text-black text-xs font-bold py-2.5 px-2 rounded-xl transition-all text-center truncate";
-                } else {
-                    btn.className = "tab-btn bg-transparent text-cyber-muted hover:text-white border border-cyber-border text-xs font-semibold py-2.5 px-2 rounded-xl transition-all text-center truncate";
-                }
-            });
+        function toggleAiModal() {
+            const modal = document.getElementById('ai-modal');
+            modal.classList.toggle('hidden');
         }
 
-        function orderViaWA() {
-            const p = catalog[selectedIndex];
-            const msg = `*SR ELECTRONICS PARK ORDER*\n\n*পণ্য:* ${p.title}\n*ব্র্যান্ড:* ${p.brand}\n*মূল্য:* ${p.price}\n*শোরুম:* হাটবোয়ালিয়া বাজার, চুয়াডাঙ্গা`;
-            window.open(`https://wa.me/${OFFICIAL_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
+        async function sendQueryToGemini() {
+            const input = document.getElementById('ai-input');
+            const chatBox = document.getElementById('ai-chat-box');
+            const query = input.value.trim();
+            if(!query) return;
 
-        function toggleAiChat() {
-            document.getElementById('aiModal').classList.toggle('hidden');
-        }
-
-        function sendAiMessage() {
-            const input = document.getElementById('userMsg');
-            const chatBox = document.getElementById('chatBox');
-            if (!input.value.trim()) return;
-
-            const userText = input.value;
-            chatBox.innerHTML += `<div class="bg-cyber-card p-2 rounded-xl text-right text-cyber-cyan border border-cyber-border">${userText}</div>`;
+            chatBox.innerHTML += `<div class="bg-blue-600/30 border border-blue-500/30 p-3 rounded-xl text-white text-right ml-8">${query}</div>`;
             input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
 
-            setTimeout(() => {
-                let aiReply = "মিনিস্টার ও বাটারফ্লাইয়ের লেটেস্ট অফার অনুযায়ী মডেলগুলো স্টকে রয়েছে। সরাসরি বুকিং করতে নিচের হোয়াটসঅ্যাপ বাটন চাপুন।";
-                if (userText.includes("ফ্রিজ") || userText.includes("টিভি")) {
-                    aiReply = "আমাদের কাছে Minister 222L (৳৩৮,৫০০) এবং MyOne 43\" 4K Smart TV (৳৩৪,৯০০) সরাসরি শোরুম ওয়ারেন্টি সহ পাওয়া যাচ্ছে।";
+            const loadingId = 'loading-' + Date.now();
+            chatBox.innerHTML += `<div id="${loadingId}" class="bg-slate-800 p-3 rounded-xl text-slate-400 mr-8 animate-pulse">হিসাব বিশ্লেষণ করা হচ্ছে...</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const systemPrompt = "You are an official AI Assistant for Butterfly Marketing Ltd. 2026 Audit. SR Electronics Park (ID: 3000002272) added YTD Sales of BDT 8.13 Crore (81,300,000 BDT). The updated closing balance after adding this is +8,12,99,791 BDT. Answer accurately in Bengali.";
+
+            try {
+                let aiReply = "";
+                if (!apiKey) {
+                    await new Promise(r => setTimeout(r, 800));
+                    aiReply = "৮.১৩ কোটি টাকা সেলস এন্ট্রি যোগ করার পর আপনার লেজারের আপডেটকৃত ক্লোজিং ব্যালেন্স দাঁড়িয়েছে +৮,১২,৯৯,৭৯১ বিডিটি।";
+                } else {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: query }] }],
+                            systemInstruction: { parts: [{ text: systemPrompt }] }
+                        })
+                    });
+                    const data = await res.json();
+                    aiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "হিসাব সংরক্ষিত রয়েছে।";
                 }
-                chatBox.innerHTML += `<div class="bg-cyan-950/40 p-2.5 rounded-xl border border-cyber-cyan/30 text-cyber-muted">🤖 ${aiReply}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 500);
+
+                document.getElementById(loadingId).remove();
+                chatBox.innerHTML += `<div class="bg-slate-800 border border-slate-700 p-3 rounded-xl text-slate-200 mr-8 leading-relaxed">${aiReply}</div>`;
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                chatBox.innerHTML += `<div class="bg-red-900/30 border border-red-500/30 p-3 rounded-xl text-red-300 mr-8">সংযোগ ত্রুটি ঘটেছে।</div>`;
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
 </body>
