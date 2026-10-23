@@ -3,210 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR Electronics Park | Ledger Portal & Audit Certificate 2026</title>
+    <title>এস. আর. ইলেকট্রনিক্স পার্ক - অনলাইন শোরুম ও POS</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Hind Siliguri', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; padding: 0; }
+        }
+        .print-only { display: none; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
+<body class="bg-gray-100 font-sans">
 
-    <!-- Top Status Bar -->
-    <div class="bg-slate-950 border-b border-slate-800 text-xs py-2 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                <span>Butterfly Central Audit: 100% Reconciled & Certified</span>
-            </div>
-            <div class="font-mono text-amber-400">ID: #3000002272</div>
-        </div>
-    </div>
-
-    <!-- Header Section -->
-    <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-red-600 text-white shadow-md no-print sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-md">SR</div>
-                <div>
-                    <h1 class="text-lg font-bold text-white">SR Electronics Park</h1>
-                    <p class="text-xs text-slate-400">Proprietor: MD. Al Amin Sohag | Dealer of the Year 2026</p>
-                </div>
+                <i class="fa-solid fa-plug-circle-check text-2xl"></i>
+                <span class="text-xl font-bold tracking-wide">এস. আর. ইলেকট্রনিক্স পার্ক</span>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="text-right text-xs">
-                    <p class="text-slate-400">Group Volume</p>
-                    <p class="font-mono font-bold text-emerald-400">BDT 118.00 Crore</p>
-                </div>
-                <button onclick="toggleAiModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
-                    <span>✨ Live AI Assistant</span>
+            <!-- Mode Switcher -->
+            <div class="flex space-x-2 bg-red-700 p-1 rounded-lg">
+                <button onclick="switchTab('store')" id="tab-store" class="px-4 py-1.5 rounded-md text-sm font-semibold bg-white text-red-600 shadow">
+                    <i class="fa-solid fa-store mr-1"></i> অনলাইন শোরুম
+                </button>
+                <button onclick="switchTab('pos')" id="tab-pos" class="px-4 py-1.5 rounded-md text-sm font-semibold hover:bg-red-800">
+                    <i class="fa-solid fa-cash-register mr-1"></i> ক্যাশিয়ার POS
+                </button>
+                <button onclick="switchTab('orders')" id="tab-orders" class="px-4 py-1.5 rounded-md text-sm font-semibold hover:bg-red-800 relative">
+                    <i class="fa-solid fa-shopping-bag mr-1"></i> অনলাইন অর্ডার 
+                    <span id="order-badge" class="hidden absolute -top-1 -right-1 bg-yellow-400 text-black text-xs font-bold px-1.5 py-0.5 rounded-full">0</span>
                 </button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Main Content Area -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto p-4 no-print">
 
-        <!-- Summary Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">YTD Sales (Added)</p>
-                <h3 class="text-2xl font-bold font-mono text-white mt-1">BDT 8.13 Cr</h3>
+        <!-- 1. CUSTOMER ONLINE STOREFRONT -->
+        <div id="view-store" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-red-600 to-red-800 text-white rounded-2xl p-6 shadow-lg flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">মিনিস্টার, মাইওয়ান ও বাটারফ্লাই পণ্যের বিশ্বস্ত শোরুম</h1>
+                    <p class="text-red-100">সহজ কিস্তিতে ও নগদ মূল্যে সেরা ইলেকট্রনিক্স ব্র্যান্ডের পণ্য ঘরে বসেই অর্ডার করুন।</p>
+                </div>
+                <div class="mt-4 md:mt-0 text-center bg-white text-red-700 p-4 rounded-xl shadow">
+                    <p class="text-xs font-bold">হটলাইন / হোয়াটসঅ্যাপ</p>
+                    <p class="text-lg font-black">01795159529</p>
+                </div>
             </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Total Payments</p>
-                <h3 class="text-2xl font-bold font-mono text-emerald-400 mt-1">BDT 12.45 Cr+</h3>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Updated Ledger Balance</p>
-                <h3 class="text-2xl font-bold font-mono text-amber-400 mt-1">+8,12,99,791 BDT</h3>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Overdue Amount</p>
-                <h3 class="text-2xl font-bold font-mono text-blue-400 mt-1">0.00 BDT</h3>
+
+            <!-- Product Display Grid -->
+            <div>
+                <h2 class="text-xl font-bold mb-4 text-gray-800"><i class="fa-solid fa-boxes-stacked text-red-600"></i> শোরুমের প্রোডাক্টসমূহ</h2>
+                <div id="store-product-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
             </div>
         </div>
 
-        <!-- Consolidated Regional Branch Performance -->
-        <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl overflow-hidden shadow-sm">
-            <div class="p-6 border-b border-slate-700 bg-slate-900/50 flex justify-between items-center">
-                <div>
-                    <h3 class="text-base font-bold text-white">Consolidated Regional Branch Performance & Ledger Integration</h3>
-                    <p class="text-xs text-slate-400">YTD Sales & 8.13 Crore BDT Successful Addition</p>
+        <!-- 2. CASHIER POS SYSTEM -->
+        <div id="view-pos" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Product Selector & Form -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow space-y-4">
+                    <h2 class="text-lg font-bold border-b pb-2 text-red-600"><i class="fa-solid fa-cart-plus"></i> দ্রুত নতুন বিক্রি ও ইনভয়েস তৈরি</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">গ্রাহকের নাম *</label>
+                            <input type="text" id="cust-name" class="w-full border rounded p-2 focus:ring-2 focus:ring-red-500 outline-none" placeholder="যেমন: মো: তাজমূল হক">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">মোবাইল নম্বর *</label>
+                            <input type="text" id="cust-phone" class="w-full border rounded p-2 focus:ring-2 focus:ring-red-500 outline-none" placeholder="01795159529">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">প্রোডাক্ট সিলেক্ট করুন</label>
+                            <select id="pos-product-select" onchange="updatePOSPrice()" class="w-full border rounded p-2 bg-gray-50 focus:ring-2 focus:ring-red-500">
+                                <!-- Loaded dynamically -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">বিক্রয়ের ধরন</label>
+                            <select id="pos-sale-type" class="w-full border rounded p-2 bg-gray-50">
+                                <option value="কিস্তি / বাকি (Installment)">কিস্তি / বাকি (Installment)</option>
+                                <option value="নগদ বিক্রয় (Cash)">নগদ বিক্রয় (Cash)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-lg">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600">মোট মূল্য (৳)</label>
+                            <input type="number" id="pos-total-price" readonly class="w-full border rounded p-2 font-bold bg-gray-200">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600">ডাউন পেমেন্ট / জমা (৳)</label>
+                            <input type="number" id="pos-down-payment" oninput="calculateDue()" class="w-full border rounded p-2 font-bold text-green-700" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-600">বর্তমান বকেয়া (৳)</label>
+                            <input type="number" id="pos-due-amount" readonly class="w-full border rounded p-2 font-bold text-red-600 bg-gray-200" placeholder="0">
+                        </div>
+                    </div>
+
+                    <button onclick="processPOSSale()" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold shadow flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-print"></i>
+                        <span>এক ক্লিকে সেল সম্পন্ন ও ইনভয়েস প্রিন্ট করুন</span>
+                    </button>
                 </div>
-                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">Synced & Updated</span>
+
+                <!-- Admin Quick Actions & Data Management -->
+                <div class="bg-white p-6 rounded-xl shadow space-y-4">
+                    <h2 class="text-lg font-bold border-b pb-2 text-gray-800"><i class="fa-solid fa-database"></i> আগের ডেটা ইম্পোর্ট ও অ্যাডমিন</h2>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 text-sm space-y-2">
+                        <p class="font-bold text-blue-900"><i class="fa-solid fa-file-csv"></i> qsale24 / এক্সেল ডেটা আপলোড:</p>
+                        <input type="file" id="csv-file-input" accept=".csv" class="block w-full text-xs text-gray-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-blue-600 file:text-white">
+                        <button onclick="importCSVData()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs py-1.5 rounded font-bold">ইম্পোর্ট করুন</button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="font-bold text-xs text-gray-600">নতুন প্রোডাক্ট যোগ করুন:</h3>
+                        <input type="text" id="add-p-name" placeholder="প্রোডাক্টের নাম" class="w-full border p-1.5 text-sm rounded">
+                        <input type="number" id="add-p-price" placeholder="মূল্য (৳)" class="w-full border p-1.5 text-sm rounded">
+                        <button onclick="addNewProduct()" class="w-full bg-gray-800 text-white py-1.5 rounded text-xs font-bold">+ প্রোডাক্ট সেভ করুন</button>
+                    </div>
+                </div>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-slate-300">
-                    <thead class="bg-slate-900 text-slate-400 uppercase text-xs font-bold border-b border-slate-700">
-                        <tr>
-                            <th class="px-6 py-3.5">Rank</th>
-                            <th class="px-6 py-3.5">Trade Name / Branch</th>
-                            <th class="px-6 py-3.5">Region</th>
-                            <th class="px-6 py-3.5">YTD Sales</th>
-                            <th class="px-6 py-3.5">RTGS Settled</th>
-                            <th class="px-6 py-3.5 text-right">Status / Growth</th>
+        </div>
+
+        <!-- 3. ONLINE ORDERS MANAGEMENT PANEL -->
+        <div id="view-orders" class="hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-lg font-bold border-b pb-4 text-gray-800 flex justify-between items-center">
+                <span><i class="fa-solid fa-list-check text-red-600"></i> গ্রাহকদের অনলাইন অর্ডারের তালিকা</span>
+            </h2>
+            <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 border-b">
+                            <th class="p-3">অর্ডার তারিখ</th>
+                            <th class="p-3">গ্রাহক ও ফোন</th>
+                            <th class="p-3">পণ্যের বিবরণ</th>
+                            <th class="p-3">মোট মূল্য</th>
+                            <th class="p-3">অ্যাকশন</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-700/50 font-medium">
-                        <tr class="bg-amber-950/20 hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono font-bold text-amber-400">#1</td>
-                            <td class="px-6 py-4 font-bold text-white">SR Electronics Park</td>
-                            <td class="px-6 py-4">Chuadanga</td>
-                            <td class="px-6 py-4 font-mono text-emerald-400">BDT 8.13 Cr (Added)</td>
-                            <td class="px-6 py-4 font-mono">BDT 1.94 Cr</td>
-                            <td class="px-6 py-4 text-right font-bold text-emerald-400">27% Regional Growth</td>
-                        </tr>
-                        <tr class="hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono text-slate-400">#2</td>
-                            <td class="px-6 py-4">Dhaka Tech Hub</td>
-                            <td class="px-6 py-4">Dhaka</td>
-                            <td class="px-6 py-4 font-mono">BDT 6.75 Cr</td>
-                            <td class="px-6 py-4 font-mono">BDT 1.28 Cr</td>
-                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
-                        </tr>
-                        <tr class="hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono text-slate-400">#3</td>
-                            <td class="px-6 py-4">Rajshahi Traders</td>
-                            <td class="px-6 py-4">Rajshahi</td>
-                            <td class="px-6 py-4 font-mono">BDT 5.90 Cr</td>
-                            <td class="px-6 py-4 font-mono">BDT 95.5 Lac</td>
-                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
-                        </tr>
-                        <tr class="hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono text-slate-400">#4</td>
-                            <td class="px-6 py-4">Chattogram Electogram</td>
-                            <td class="px-6 py-4">Chattogram</td>
-                            <td class="px-6 py-4 font-mono">BDT 4.85 Cr</td>
-                            <td class="px-6 py-4 font-mono">BDT 88.4 Lac</td>
-                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
-                        </tr>
+                    <tbody id="orders-table-body">
+                        <!-- Loaded dynamically -->
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
 
-    </main>
+    <!-- 4. PRINTABLE INVOICE TEMPLATE (YOUR ORIGINAL DESIGN) -->
+    <div id="printable-invoice" class="print-only max-w-3xl mx-auto bg-white p-6 border border-gray-200">
+        <div class="text-center border-b-2 border-red-600 pb-3 mb-4">
+            <h1 class="text-2xl font-bold text-red-600">এস. আর. ইলেকট্রনিক্স পার্ক</h1>
+            <p class="text-xs text-gray-600">মিনিস্টার, মাইওয়ান ও বাটারফ্লাই পণ্যের নির্ভরযোগ্য শোরুম</p>
+            <p class="text-xs text-gray-600">মোবাইল: 01795159529 | ঠিকানা: আপনার শোরুমের ঠিকানা</p>
+        </div>
 
-    <!-- AI Assistant Floating / Modal Drawer -->
-    <div id="ai-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl flex flex-col h-[500px] shadow-2xl overflow-hidden">
-            <div class="p-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <h3 class="text-sm font-bold text-white">Gemini AI Audit & Ledger Assistant</h3>
-                </div>
-                <button onclick="toggleAiModal()" class="text-slate-400 hover:text-white font-bold px-2">✕</button>
-            </div>
-            <div id="ai-chat-box" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs">
-                <div class="bg-slate-800 p-3 rounded-xl text-slate-300">
-                    হ্যালো! ৮.১৩ কোটি টাকা (৮,১৩,০০,০০০ BDT) সেলস অ্যামাউন্ট লেজারের সাথে সফলভাবে যোগ করা হয়েছে। বর্তমান আপডেটকৃত ব্যালেন্স +৮,১২,৯৯,৭৯১ বিডিটি।
-                </div>
-            </div>
-            <div class="p-3 bg-slate-950 border-t border-slate-800 flex gap-2">
-                <input type="text" id="ai-input" placeholder="যেমন: নতুন ব্যালেন্স কত?" class="flex-grow bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500" onkeypress="if(event.key === 'Enter') sendQueryToGemini()">
-                <button onclick="sendQueryToGemini()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold">সেন্ড</button>
-            </div>
+        <table class="w-full text-xs mb-4">
+            <tr>
+                <td><strong>গ্রাহকের নাম:</strong> <span id="inv-cust-name"></span></td>
+                <td class="text-right"><strong>ইনভয়েস নং:</strong> #<span id="inv-no"></span></td>
+            </tr>
+            <tr>
+                <td><strong>মোবাইল:</strong> <span id="inv-cust-phone"></span></td>
+                <td class="text-right"><strong>তারিখ:</strong> <span id="inv-date"></span></td>
+            </tr>
+            <tr>
+                <td><strong>বিক্রয়ের ধরন:</strong> <span id="inv-type"></span></td>
+                <td class="text-right"><strong>ব্র্যান্ড:</strong> Minister / MyOne / Butterfly</td>
+            </tr>
+        </table>
+
+        <table class="w-full text-xs border-collapse border border-gray-300 mb-4">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border p-2">ক্রম</th>
+                    <th class="border p-2 text-left">পণ্যের নাম ও বিবরণ</th>
+                    <th class="border p-2">পরিমাণ</th>
+                    <th class="border p-2">একক মূল্য</th>
+                    <th class="border p-2">মোট টাকা</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border p-2 text-center">১</td>
+                    <td class="border p-2" id="inv-prod-name"></td>
+                    <td class="border p-2 text-center">১ টি</td>
+                    <td class="border p-2 text-center">৳ <span id="inv-prod-price"></span></td>
+                    <td class="border p-2 text-center">৳ <span id="inv-prod-total"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-right text-xs space-y-1 mb-8">
+            <p>সর্বমোট মূল্য: ৳ <span id="inv-summary-total"></span></p>
+            <p>ডাউন পেমেন্ট / জমা: ৳ <span id="inv-summary-paid"></span></p>
+            <p class="text-red-600 font-bold text-sm">বর্তমান মোট বাকি: ৳ <span id="inv-summary-due"></span></p>
+        </div>
+
+        <div class="flex justify-between text-xs pt-10">
+            <p class="border-t border-dashed border-gray-400 px-4">গ্রাহকের স্বাক্ষর</p>
+            <p class="border-t border-dashed border-gray-400 px-4">বিক্রেতার স্বাক্ষর</p>
+        </div>
+
+        <div class="text-center text-xs text-gray-500 border-t pt-2 mt-6">
+            <p>এস. আর. ইলেকট্রনিক্স পার্ক থেকে পণ্য কেনার জন্য ধন্যবাদ!</p>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-4 text-center text-xs border-t border-slate-800">
-        <p>Butterfly Marketing Ltd. Compliance, Audit & Banking Reconciliation Division.</p>
-    </footer>
-
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        const apiKey = typeof __api_key !== 'undefined' ? __api_key : "";
+        // Initial Products State
+        let products = JSON.parse(localStorage.getItem('sr_products')) || [
+            { id: 1, name: "Minister Refrigerator 222 Ltr", price: 48280 },
+            { id: 2, name: "Minister LED Smart TV 43\"", price: 35000 },
+            { id: 3, name: "Butterfly Washing Machine 8 Kg", price: 28500 }
+        ];
 
-        function toggleAiModal() {
-            const modal = document.getElementById('ai-modal');
-            modal.classList.toggle('hidden');
-        }
+        let onlineOrders = JSON.parse(localStorage.getItem('sr_online_orders')) || [];
 
-        async function sendQueryToGemini() {
-            const input = document.getElementById('ai-input');
-            const chatBox = document.getElementById('ai-chat-box');
-            const query = input.value.trim();
-            if(!query) return;
+        // Tab Switcher
+        function switchTab(tab) {
+            document.getElementById('view-store').classList.add('hidden');
+            document.getElementById('view-pos').classList.add('hidden');
+            document.getElementById('view-orders').classList.add('hidden');
 
-            chatBox.innerHTML += `<div class="bg-blue-600/30 border border-blue-500/30 p-3 rounded-xl text-white text-right ml-8">${query}</div>`;
-            input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
+            document.getElementById('tab-store').className = "px-4 py-1.5 rounded-md text-sm font-semibold hover:bg-red-800";
+            document.getElementById('tab-pos').className = "px-4 py-1.5 rounded-md text-sm font-semibold hover:bg-red-800";
+            document.getElementById('tab-orders').className = "px-4 py-1.5 rounded-md text-sm font-semibold hover:bg-red-800";
 
-            const loadingId = 'loading-' + Date.now();
-            chatBox.innerHTML += `<div id="${loadingId}" class="bg-slate-800 p-3 rounded-xl text-slate-400 mr-8 animate-pulse">হিসাব বিশ্লেষণ করা হচ্ছে...</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            const systemPrompt = "You are an official AI Assistant for Butterfly Marketing Ltd. 2026 Audit. SR Electronics Park (ID: 3000002272) added YTD Sales of BDT 8.13 Crore (81,300,000 BDT). The updated closing balance after adding this is +8,12,99,791 BDT. Answer accurately in Bengali.";
-
-            try {
-                let aiReply = "";
-                if (!apiKey) {
-                    await new Promise(r => setTimeout(r, 800));
-                    aiReply = "৮.১৩ কোটি টাকা সেলস এন্ট্রি যোগ করার পর আপনার লেজারের আপডেটকৃত ক্লোজিং ব্যালেন্স দাঁড়িয়েছে +৮,১২,৯৯,৭৯১ বিডিটি।";
-                } else {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: query }] }],
-                            systemInstruction: { parts: [{ text: systemPrompt }] }
-                        })
-                    });
-                    const data = await res.json();
-                    aiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "হিসাব সংরক্ষিত রয়েছে।";
-                }
-
-                document.getElementById(loadingId).remove();
-                chatBox.innerHTML += `<div class="bg-slate-800 border border-slate-700 p-3 rounded-xl text-slate-200 mr-8 leading-relaxed">${aiReply}</div>`;
-            } catch (error) {
-                document.getElementById(loadingId).remove();
-                chatBox.innerHTML += `<div class="bg-red-900/30 border border-red-500/30 p-3 rounded-xl text-red-300 mr-8">সংযোগ ত্রুটি ঘটেছে।</div>`;
+            if (tab === 'store') {
+                document.getElementById('view-store').classList.remove('hidden');
+                document.getElementById('tab-store').className = "px-4 py-1.5 rounded-md text-sm font-semibold bg-white text-red-600 shadow";
+            } else if (tab === 'pos') {
+                document.getElementById('view-pos').classList.remove('hidden');
+                document.getElementById('tab-pos').className = "px-4 py-1.5 rounded-md text-sm font-semibold bg-white text-red-600 shadow";
+            } else if (tab === 'orders') {
+                document.getElementById('view-orders').classList.remove('hidden');
+                document.getElementById('tab-orders').className = "px-4 py-1.5 rounded-md text-sm font-semibold bg-white text-red-600 shadow";
             }
-            chatBox.scrollTop = chatBox.scrollHeight;
         }
-    </script>
-</body>
-</html>
+
+        // Render Store Products
+        function renderStoreProducts() {
+            const grid = document.getElementById('store-product-grid');
+            grid.innerHTML = '';
+            products.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-xl shadow border p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="h-40 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 mb-3">
+                                <i class="fa-solid fa-tv text-4xl"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-800">${p.name}</h3>
+                            <p class="text-red-600 font-bold text-lg mt-1">৳ ${p.price.toLocaleString('bn-BD')}</p>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <button onclick="placeOnlineOrder('${p.name}', ${p.price})" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg text-sm font-bold shadow">
+                                এখনই অনলাইন অর্ডার করুন
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Populate POS Dropdown
+        function populatePOSDropdown() {
+            const select = document.getElementById('pos-product-select');
+            select.innerHTML = '';
+            products.forEach(p => {
+                select.innerHTML += `<option value="${p.price}">${p.name} - ৳ ${p.price}</option>`;
+            });
+            updatePOSPrice();
+        }
+
+        function updatePOSPrice() {
+            const price = document.getElementById('pos-product-select').value;
+            document.getElementById('pos-total-price').value = price;
+            calculateDue();
+        }
+
+        function calculateDue() {
+            const total = parseFloat(document.getElementById('pos-total-price').value) || 0;
+            const paid = parseFloat(document.getElementById('pos-down-payment').value) || 0;
+            document.getElementById('pos-due-amount').value = Math.max(0, total - paid);
+        }
+
+        // Customer Online Order Prompt
+        function placeOnlineOrder(prodName, price) {
+            const name = prompt("আপনার নাম লিখুন:");
+            const phone = prompt("আপনার মোবাইল নম্বর লিখুন:");
+            if (name && phone) {
+                const order = {
+                    id: Date.now(),
+                    date: new Date().toLocaleDateString('bn-BD'),
+                    custName: name,
+                    phone: phone,
+                    product: prodName,
+                    price: price
+                };
+                onlineOrders.push(order);
+                localStorage.setItem('sr_online_orders', JSON.stringify(onlineOrders));
+                updateOrderBadge();
+                renderOrdersTable();
+                alert("আপনার অর্ডারটি সফলভাবে গৃহীত হয়েছে! শোরুম প্রতিনিধি শীঘ্রই যোগাযোগ করবেন।");
+            }
+        }
+
+        // Render Online Orders Panel
+        function renderOrdersTable() {
+            const tbody = document.getElementById('orders-table-body');
+            tbody.innerHTML = '';
+            onlineOrders.forEach(o => {
+                tbody.innerHTML += `
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-3">${o.date}</td>
+                        <td class="p-3"><strong>${o.custName}</strong><br><span class="text-xs text-gray-500">${o.phone}</span></td>
+                        <td class="p-3">${o.product}</td>
+                        <td class="p-3 font-bold text-red-600">৳ ${o.price}</td>
+                        <td class="p-3">
+                            <button onclick="approveOrderToPOS('${o.custName}', '${o.phone}', '${o.product}', ${o.price}, ${o.id})" class="bg-green-600 text-white text-xs px-3 py-1.5 rounded font-bold">
+                                POS-এ পাঠান ও ইনভয়েস তৈরি করুন
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateOrderBadge() {
+            const badge = document.getElementById('order-badge');
+            if (onlineOrders.length > 0) {
+                badge.innerText = onlineOrders.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function approveOrderToPOS(name, phone, prodName, price, orderId) {
+            switchTab('pos');
+            document.getElementById('cust-name').value = name;
+            document.getElementById('cust-phone').value = phone;
+            document.getElementById('pos-total-price').value = price;
+
+            // Remove order after processing
+            onlineOrders = onlineOrders.filter(o => o.id !== orderId);
+            localStorage.setItem('sr_
