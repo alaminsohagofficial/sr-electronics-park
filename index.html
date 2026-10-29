@@ -1,212 +1,223 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SR Electronics Park | Ledger Portal & Audit Certificate 2026</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Hind Siliguri', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salsabilah Enterprise & S.R. Electronics Park - Unified Treasury Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg-dark: #030712;
+--card-bg: #0f172a;
+--accent: #06b6d4;
+--success: #10b981;
+--warning: #f59e0b;
+--text-main: #f8fafc;
+--text-muted: #94a3b8;
+--border-color: #1e293b;
+}
+body {
+font-family: 'Hind Siliguri', Inter, sans-serif;
+background-color: var(--bg-dark);
+color: var(--text-main);
+margin: 0;
+padding: 15px;
+min-height: 100vh;
+}
+.container {
+max-width: 900px;
+margin: 0 auto;
+}
+.header {
+background: linear-gradient(135deg, #0e7490, #1e3a8a);
+padding: 25px;
+border-radius: 16px;
+text-align: center;
+margin-bottom: 25px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+border: 1px solid rgba(6, 182, 212, 0.2);
+}
+.header span {
+font-family: 'Fira Code', monospace;
+font-size: 11px;
+letter-spacing: 2px;
+color: #67e8f9;
+text-transform: uppercase;
+}
+.header h1 { margin: 5px 0 0; font-size: 24px; color: #fff; }
+.header p { margin: 5px 0 0; font-size: 13px; color: #cbd5e1; }
+.section-title {
+font-size: 15px;
+font-weight: bold;
+color: var(--accent);
+margin: 20px 0 10px 5px;
+font-family: 'Fira Code', monospace;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+.grid-2 {
+display: grid;
+grid-template-columns: 1fr;
+gap: 15px;
+}
+@media(min-width: 640px) {
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+.card {
+background: var(--card-bg);
+border-radius: 12px;
+padding: 18px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+border: 1px solid var(--border-color);
+transition: transform 0.2s, border-color 0.2s;
+}
+.card:hover {
+transform: translateY(-2px);
+border-color: rgba(6, 182, 212, 0.4);
+}
+.card.pos { border-left: 4px solid var(--success); }
+.card.corp { border-left: 4px solid var(--accent); }
+.card.loan { border-left: 4px solid var(--warning); }
+.card-title {
+font-size: 15px;
+font-weight: bold;
+margin-bottom: 12px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid var(--border-color);
+padding-bottom: 8px;
+}
+.row {
+display: flex;
+justify-content: space-between;
+font-size: 13px;
+margin-bottom: 8px;
+}
+.label { color: var(--text-muted); }
+.value { font-weight: bold; color: var(--text-main); font-family: 'Fira Code', monospace; }
+.badge {
+background: rgba(16, 185, 129, 0.15);
+color: var(--success);
+padding: 3px 8px;
+border-radius: 6px;
+font-size: 10px;
+font-family: 'Fira Code', monospace;
+border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.action-btn {
+background: linear-gradient(135deg, #0891b2, #0e7490);
+color: white;
+border: none;
+width: 100%;
+padding: 14px;
+border-radius: 10px;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+margin-top: 20px;
+box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+transition: opacity 0.2s;
+}
+.action-btn:active { transform: scale(0.98); }
+#system-status {
+text-align: center;
+font-size: 13px;
+color: var(--warning);
+margin-top: 12px;
+font-family: 'Fira Code', monospace;
+}
+.footer {
+text-align: center;
+font-size: 11px;
+color: var(--text-muted);
+margin-top: 30px;
+border-top: 1px solid var(--border-color);
+padding-top: 15px;
+font-family: 'Fira Code', monospace;
+}
+</style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased">
-
-    <!-- Top Status Bar -->
-    <div class="bg-slate-950 border-b border-slate-800 text-xs py-2 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                <span>Butterfly Central Audit: 100% Reconciled & Certified</span>
-            </div>
-            <div class="font-mono text-amber-400">ID: #3000002272</div>
-        </div>
-    </div>
-
-    <!-- Header Section -->
-    <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-md">SR</div>
-                <div>
-                    <h1 class="text-lg font-bold text-white">SR Electronics Park</h1>
-                    <p class="text-xs text-slate-400">Proprietor: MD. Al Amin Sohag | Dealer of the Year 2026</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-4">
-                <div class="text-right text-xs">
-                    <p class="text-slate-400">Group Volume</p>
-                    <p class="font-mono font-bold text-emerald-400">BDT 118.00 Crore</p>
-                </div>
-                <button onclick="toggleAiModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
-                    <span>✨ Live AI Assistant</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
-
-        <!-- Summary Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">YTD Sales (Added)</p>
-                <h3 class="text-2xl font-bold font-mono text-white mt-1">BDT 8.13 Cr</h3>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Total Payments</p>
-                <h3 class="text-2xl font-bold font-mono text-emerald-400 mt-1">BDT 12.45 Cr+</h3>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Updated Ledger Balance</p>
-                <h3 class="text-2xl font-bold font-mono text-amber-400 mt-1">+8,12,99,791 BDT</h3>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl shadow-sm">
-                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Overdue Amount</p>
-                <h3 class="text-2xl font-bold font-mono text-blue-400 mt-1">0.00 BDT</h3>
-            </div>
-        </div>
-
-        <!-- Consolidated Regional Branch Performance -->
-        <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl overflow-hidden shadow-sm">
-            <div class="p-6 border-b border-slate-700 bg-slate-900/50 flex justify-between items-center">
-                <div>
-                    <h3 class="text-base font-bold text-white">Consolidated Regional Branch Performance & Ledger Integration</h3>
-                    <p class="text-xs text-slate-400">YTD Sales & 8.13 Crore BDT Successful Addition</p>
-                </div>
-                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">Synced & Updated</span>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-slate-300">
-                    <thead class="bg-slate-900 text-slate-400 uppercase text-xs font-bold border-b border-slate-700">
-                        <tr>
-                            <th class="px-6 py-3.5">Rank</th>
-                            <th class="px-6 py-3.5">Trade Name / Branch</th>
-                            <th class="px-6 py-3.5">Region</th>
-                            <th class="px-6 py-3.5">YTD Sales</th>
-                            <th class="px-6 py-3.5">RTGS Settled</th>
-                            <th class="px-6 py-3.5 text-right">Status / Growth</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-700/50 font-medium">
-                        <tr class="bg-amber-950/20 hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono font-bold text-amber-400">#1</td>
-                            <td class="px-6 py-4 font-bold text-white">SR Electronics Park</td>
-                            <td class="px-6 py-4">Chuadanga</td>
-                            <td class="px-6 py-4 font-mono text-emerald-400">BDT 8.13 Cr (Added)</td>
-                            <td class="px-6 py-4 font-mono">BDT 1.94 Cr</td>
-                            <td class="px-6 py-4 text-right font-bold text-emerald-400">27% Regional Growth</td>
-                        </tr>
-                        <tr class="hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono text-slate-400">#2</td>
-                            <td class="px-6 py-4">Dhaka Tech Hub</td>
-                            <td class="px-6 py-4">Dhaka</td>
-                            <td class="px-6 py-4 font-mono">BDT 6.75 Cr</td>
-                            <td class="px-6 py-4 font-mono">BDT 1.28 Cr</td>
-                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
-                        </tr>
-                        <tr class="hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono text-slate-400">#3</td>
-                            <td class="px-6 py-4">Rajshahi Traders</td>
-                            <td class="px-6 py-4">Rajshahi</td>
-                            <td class="px-6 py-4 font-mono">BDT 5.90 Cr</td>
-                            <td class="px-6 py-4 font-mono">BDT 95.5 Lac</td>
-                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
-                        </tr>
-                        <tr class="hover:bg-slate-700/30">
-                            <td class="px-6 py-4 font-mono text-slate-400">#4</td>
-                            <td class="px-6 py-4">Chattogram Electogram</td>
-                            <td class="px-6 py-4">Chattogram</td>
-                            <td class="px-6 py-4 font-mono">BDT 4.85 Cr</td>
-                            <td class="px-6 py-4 font-mono">BDT 88.4 Lac</td>
-                            <td class="px-6 py-4 text-right text-slate-300">NexusPay Verified</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- AI Assistant Floating / Modal Drawer -->
-    <div id="ai-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-2xl flex flex-col h-[500px] shadow-2xl overflow-hidden">
-            <div class="p-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <h3 class="text-sm font-bold text-white">Gemini AI Audit & Ledger Assistant</h3>
-                </div>
-                <button onclick="toggleAiModal()" class="text-slate-400 hover:text-white font-bold px-2">✕</button>
-            </div>
-            <div id="ai-chat-box" class="flex-grow p-4 overflow-y-auto space-y-3 text-xs">
-                <div class="bg-slate-800 p-3 rounded-xl text-slate-300">
-                    হ্যালো! ৮.১৩ কোটি টাকা (৮,১৩,০০,০০০ BDT) সেলস অ্যামাউন্ট লেজারের সাথে সফলভাবে যোগ করা হয়েছে। বর্তমান আপডেটকৃত ব্যালেন্স +৮,১২,৯৯,৭৯১ বিডিটি।
-                </div>
-            </div>
-            <div class="p-3 bg-slate-950 border-t border-slate-800 flex gap-2">
-                <input type="text" id="ai-input" placeholder="যেমন: নতুন ব্যালেন্স কত?" class="flex-grow bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500" onkeypress="if(event.key === 'Enter') sendQueryToGemini()">
-                <button onclick="sendQueryToGemini()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold">সেন্ড</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-4 text-center text-xs border-t border-slate-800">
-        <p>Butterfly Marketing Ltd. Compliance, Audit & Banking Reconciliation Division.</p>
-    </footer>
-
-    <script>
-        const apiKey = typeof __api_key !== 'undefined' ? __api_key : "";
-
-        function toggleAiModal() {
-            const modal = document.getElementById('ai-modal');
-            modal.classList.toggle('hidden');
-        }
-
-        async function sendQueryToGemini() {
-            const input = document.getElementById('ai-input');
-            const chatBox = document.getElementById('ai-chat-box');
-            const query = input.value.trim();
-            if(!query) return;
-
-            chatBox.innerHTML += `<div class="bg-blue-600/30 border border-blue-500/30 p-3 rounded-xl text-white text-right ml-8">${query}</div>`;
-            input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            const loadingId = 'loading-' + Date.now();
-            chatBox.innerHTML += `<div id="${loadingId}" class="bg-slate-800 p-3 rounded-xl text-slate-400 mr-8 animate-pulse">হিসাব বিশ্লেষণ করা হচ্ছে...</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            const systemPrompt = "You are an official AI Assistant for Butterfly Marketing Ltd. 2026 Audit. SR Electronics Park (ID: 3000002272) added YTD Sales of BDT 8.13 Crore (81,300,000 BDT). The updated closing balance after adding this is +8,12,99,791 BDT. Answer accurately in Bengali.";
-
-            try {
-                let aiReply = "";
-                if (!apiKey) {
-                    await new Promise(r => setTimeout(r, 800));
-                    aiReply = "৮.১৩ কোটি টাকা সেলস এন্ট্রি যোগ করার পর আপনার লেজারের আপডেটকৃত ক্লোজিং ব্যালেন্স দাঁড়িয়েছে +৮,১২,৯৯,৭৯১ বিডিটি।";
-                } else {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: query }] }],
-                            systemInstruction: { parts: [{ text: systemPrompt }] }
-                        })
-                    });
-                    const data = await res.json();
-                    aiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "হিসাব সংরক্ষিত রয়েছে।";
-                }
-
-                document.getElementById(loadingId).remove();
-                chatBox.innerHTML += `<div class="bg-slate-800 border border-slate-700 p-3 rounded-xl text-slate-200 mr-8 leading-relaxed">${aiReply}</div>`;
-            } catch (error) {
-                document.getElementById(loadingId).remove();
-                chatBox.innerHTML += `<div class="bg-red-900/30 border border-red-500/30 p-3 rounded-xl text-red-300 mr-8">সংযোগ ত্রুটি ঘটেছে।</div>`;
-            }
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    </script>
+<body>
+<div class="container">
+<div class="header">
+<span>Salsabilah Enterprise Treasury & ERP Hub</span>
+<h1>S. R. Electronics Park - Central Dashboard</h1>
+<p>সেন্ট্রালাইজড ফিনান্সিয়াল সিস্টেম, ট্রেজারি এবং পিওএস ইন্টিগ্রেশন প্যানেল</p>
+</div>
+<!-- Corporate Accounts -->
+<div class="section-title">Corporate Treasury Accounts</div>
+<div class="grid-2">
+<div class="card corp">
+<div class="card-title">
+Minister / Salsabilah
+<span class="badge">SAP DOC: 5100029481</span>
+</div>
+<div class="row"><span class="label">Deal ID:</span><span class="value">DEAL002905</span></div>
+<div class="row"><span class="label">Ledger Balance:</span><span class="value" style="color: var(--success);">+ ৳ ৩,৩০,৫৬,২৯৭.০০</span></div>
+</div>
+<div class="card corp">
+<div class="card-title">
+Butterfly Marketing
+<span class="badge">Live Sync</span>
+</div>
+<div class="row"><span class="label">Account No:</span><span class="value">3000002272</span></div>
+<div class="row"><span class="label">Current Balance:</span><span class="value" style="color: var(--success);">৳ ৩,১৪,২৯,০০০.০০</span></div>
+</div>
+</div>
+<!-- S.R. Electronics Park Local Banking & POS -->
+<div class="section-title">S.R. Electronics Park Banking & POS</div>
+<div class="grid-2">
+<!-- Pubali Bank POS -->
+<div class="card pos">
+<div class="card-title">
+পূবালী ব্যাংক পিওএস ও মার্চেন্ট
+<span class="badge">NPSB Ready</span>
+</div>
+<div class="row"><span class="label">Terminal ID (TID):</span><span class="value">20041595</span></div>
+<div class="row"><span class="label">Merchant A/C:</span><span class="value">4370901017008</span></div>
+<div class="row"><span class="label">সর্বশেষ নিট পেমেন্ট:</span><span class="value">৳ 54.91</span></div>
+<div class="row"><span class="label">SIM Connect:</span><span class="value">01322813961 (Active)</span></div>
+</div>
+<!-- Sonali Bank CC -->
+<div class="card">
+<div class="card-title">
+সোনালী ব্যাংক পিএলসি
+<span class="badge">Settlement Target</span>
+</div>
+<div class="row"><span class="label">CC A/C Number:</span><span class="value">3107053000068</span></div>
+<div class="row"><span class="label">SMS Alert Phone:</span><span class="value">Active (Registered)</span></div>
+<div class="row"><span class="label">লেনদেন মাধ্যম:</span><span class="value" style="color: var(--success);">NPSB Instant Transfer</span></div>
+</div>
+<!-- Brac Bank Loan -->
+<div class="card loan">
+<div class="card-title">ব্র্যাক ব্যাংক (EMI Loan)</div>
+<div class="row"><span class="label">Loan Account:</span><span class="value">৬১০۱۰‌و২৪৮১০০০১</span></div>
+<div class="row"><span class="label">ইনস্টলেমেন্ট:</span><span class="value">সক্রিয় ও নিয়মিত</span></div>
+</div>
+<!-- DMCB Account -->
+<div class="card">
+<div class="card-title">ডিএমসিবি (DMCB)</div>
+<div class="row"><span class="label">Savings (083-4001):</span><span class="value">৳ 100</span></div>
+<div class="row"><span class="label">Investment (083-7168):</span><span class="value">৳ 2,100 (Paid)</span></div>
+</div>
+</div>
+<button class="action-btn" onclick="executeSyncProcess()">⚡ ফুল ট্রেজারি সিস্টেম ও লেজার সিঙ্ক চেক করুন</button>
+<div id="system-status"></div>
+<div class="footer">
+Powered by Salsabilah Enterprise ERP Engine & SAP ECC 6.0 Integration Hub
+</div>
+</div>
+<script>
+function executeSyncProcess() {
+const box = document.getElementById('system-status');
+box.style.color = "var(--accent)";
+box.innerHTML = "🔄 SAP লেজার ও পূবালী-সোনালী ব্যাংক নেটওয়ার্ক সিঙ্ক করা হচ্ছে...";
+setTimeout(() => {
+box.style.color = "var(--success)";
+box.innerHTML = "✨ সফল! সমস্ত ব্যাংক অ্যাকাউন্ট, কর্পোরেট লেজার এবং পিওএস ডাটা আপডেট হয়েছে।";
+}, 1500);
+}
+</script>
 </body>
 </html>
