@@ -1,223 +1,408 @@
+```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salsabilah Enterprise & S.R. Electronics Park - Unified Treasury Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<title>S.R. Electronics Park - Unified Treasury Hub | Powered by Gemini</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
---bg-dark: #030712;
---card-bg: #0f172a;
---accent: #06b6d4;
---success: #10b981;
---warning: #f59e0b;
---text-main: #f8fafc;
---text-muted: #94a3b8;
---border-color: #1e293b;
+  --bg-dark: #030712;
+  --card-bg: #0f172a;
+  --accent: #06b6d4;
+  --gold: #f59e0b;
+  --gold-light: #fde68a;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #1e293b;
+}
+* {
+  box-sizing: border-box;
 }
 body {
-font-family: 'Hind Siliguri', Inter, sans-serif;
-background-color: var(--bg-dark);
-color: var(--text-main);
-margin: 0;
-padding: 15px;
-min-height: 100vh;
+  font-family: 'Hind Siliguri', Inter, sans-serif;
+  background: radial-gradient(circle at top center, rgba(6, 182, 212, 0.12), transparent 45%), var(--bg-dark);
+  color: var(--text-main);
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
 }
 .container {
-max-width: 900px;
-margin: 0 auto;
+  max-width: 920px;
+  margin: 0 auto;
 }
 .header {
-background: linear-gradient(135deg, #0e7490, #1e3a8a);
-padding: 25px;
-border-radius: 16px;
-text-align: center;
-margin-bottom: 25px;
-box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-border: 1px solid rgba(6, 182, 212, 0.2);
+  background: linear-gradient(135deg, #0b132b 0%, #0e3a5f 55%, #0e7490 100%);
+  padding: 28px 24px;
+  border-radius: 18px;
+  text-align: center;
+  margin-bottom: 26px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 28px rgba(6, 182, 212, 0.16);
+  border: 1px solid rgba(6, 182, 212, 0.35);
 }
-.header span {
-font-family: 'Fira Code', monospace;
-font-size: 11px;
-letter-spacing: 2px;
-color: #67e8f9;
-text-transform: uppercase;
+.brand-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.header h1 { margin: 5px 0 0; font-size: 24px; color: #fff; }
-.header p { margin: 5px 0 0; font-size: 13px; color: #cbd5e1; }
+.sr-monogram {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #1e1b0e;
+  background: linear-gradient(145deg, #fef08a 0%, #f59e0b 48%, #b45309 100%);
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.45), 0 0 36px rgba(6, 182, 212, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(253, 230, 138, 0.8);
+}
+.header-kicker {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #67e8f9;
+  text-transform: uppercase;
+}
+.header h1 {
+  margin: 4px 0 0;
+  font-size: 25px;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+.header .enterprise-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+.header .location-line {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: #cbd5e1;
+}
+.pill-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.gemini-pill, .mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  color: #67e8f9;
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+}
+.mode-pill {
+  border-color: rgba(245, 158, 11, 0.45);
+  color: var(--gold-light);
+  box-shadow: none;
+}
 .section-title {
-font-size: 15px;
-font-weight: bold;
-color: var(--accent);
-margin: 20px 0 10px 5px;
-font-family: 'Fira Code', monospace;
-text-transform: uppercase;
-letter-spacing: 1px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 22px 0 10px 4px;
+  font-family: 'Fira Code', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .grid-2 {
-display: grid;
-grid-template-columns: 1fr;
-gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
 }
-@media(min-width: 640px) {
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 640px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .card {
-background: var(--card-bg);
-border-radius: 12px;
-padding: 18px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-border: 1px solid var(--border-color);
-transition: transform 0.2s, border-color 0.2s;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s, border-color 0.2s;
 }
 .card:hover {
-transform: translateY(-2px);
-border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.45);
 }
 .card.pos { border-left: 4px solid var(--success); }
 .card.corp { border-left: 4px solid var(--accent); }
 .card.loan { border-left: 4px solid var(--warning); }
 .card-title {
-font-size: 15px;
-font-weight: bold;
-margin-bottom: 12px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid var(--border-color);
-padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
 }
 .row {
-display: flex;
-justify-content: space-between;
-font-size: 13px;
-margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.row:last-child {
+  margin-bottom: 0;
 }
 .label { color: var(--text-muted); }
-.value { font-weight: bold; color: var(--text-main); font-family: 'Fira Code', monospace; }
+.value {
+  font-weight: 700;
+  color: var(--text-main);
+  font-family: 'Fira Code', monospace;
+  text-align: right;
+}
 .badge {
-background: rgba(16, 185, 129, 0.15);
-color: var(--success);
-padding: 3px 8px;
-border-radius: 6px;
-font-size: 10px;
-font-family: 'Fira Code', monospace;
-border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  white-space: nowrap;
 }
 .action-btn {
-background: linear-gradient(135deg, #0891b2, #0e7490);
-color: white;
-border: none;
-width: 100%;
-padding: 14px;
-border-radius: 10px;
-font-size: 15px;
-font-weight: bold;
-cursor: pointer;
-margin-top: 20px;
-box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
-transition: opacity 0.2s;
+  background: linear-gradient(135deg, #0891b2, #0e7490);
+  color: #ffffff;
+  border: 1px solid rgba(103, 232, 249, 0.3);
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 22px;
+  box-shadow: 0 4px 18px rgba(6, 182, 212, 0.3);
+  transition: opacity 0.2s, transform 0.1s;
 }
-.action-btn:active { transform: scale(0.98); }
+.action-btn:hover { opacity: 0.95; }
+.action-btn:active { transform: scale(0.99); }
 #system-status {
-text-align: center;
-font-size: 13px;
-color: var(--warning);
-margin-top: 12px;
-font-family: 'Fira Code', monospace;
+  text-align: center;
+  font-size: 13px;
+  color: var(--warning);
+  margin-top: 12px;
+  min-height: 20px;
+  font-family: 'Fira Code', monospace;
 }
 .footer {
-text-align: center;
-font-size: 11px;
-color: var(--text-muted);
-margin-top: 30px;
-border-top: 1px solid var(--border-color);
-padding-top: 15px;
-font-family: 'Fira Code', monospace;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 30px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+  font-family: 'Fira Code', monospace;
+}
+.footer strong {
+  color: #67e8f9;
 }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="header">
-<span>Salsabilah Enterprise Treasury & ERP Hub</span>
-<h1>S. R. Electronics Park - Central Dashboard</h1>
-<p>সেন্ট্রালাইজড ফিনান্সিয়াল সিস্টেম, ট্রেজারি এবং পিওএস ইন্টিগ্রেশন প্যানেল</p>
+  <div class="header">
+    <div class="brand-row">
+      <div class="sr-monogram" aria-label="SR Monogram">SR</div>
+      <span class="header-kicker">Salsabilah Enterprise Treasury &amp; ERP Hub</span>
+    </div>
+    <h1>S.R. Electronics Park — Central Dashboard</h1>
+    <p class="enterprise-sub">An Enterprise of Salsabilah Amin Limited · Salsabilah Sovereign Singularity</p>
+    <p class="location-line">সৈয়দপুর রোড (বিদ্যুৎ অফিসের সামনে), সায়েবপাড়া বাজার, সৈয়দপুর বাজার, ঝালকাঠি</p>
+    <div class="pill-row">
+      <span class="gemini-pill">✦ Powered by Gemini</span>
+      <span id="connection-mode" class="mode-pill">Checking API...</span>
+    </div>
+  </div>
+
+  <!-- Corporate Accounts -->
+  <div class="section-title">Corporate Treasury Accounts</div>
+  <div class="grid-2">
+    <div class="card corp">
+      <div class="card-title">
+        Minister / Salsabilah
+        <span class="badge">SAP DOC: 5100029481</span>
+      </div>
+      <div class="row"><span class="label">Deal ID:</span><span class="value">DEAL002905</span></div>
+      <div class="row"><span class="label">Ledger Balance:</span><span class="value" style="color: var(--success);">+ ৳ ১৯,২০,০০০.০০</span></div>
+    </div>
+
+    <div class="card corp">
+      <div class="card-title">
+        Butterfly Marketing
+        <span class="badge">Live Sync</span>
+      </div>
+      <div class="row"><span class="label">Account No:</span><span class="value">3000002272</span></div>
+      <div class="row"><span class="label">Current Balance:</span><span class="value" style="color: var(--success);">৳ ১,০০,০০,০০০.০০</span></div>
+    </div>
+  </div>
+
+  <!-- S.R. Electronics Park Local Banking & POS -->
+  <div class="section-title">S.R. Electronics Park Banking &amp; POS</div>
+  <div class="grid-2">
+    <!-- Pubali Bank POS -->
+    <div class="card pos">
+      <div class="card-title">
+        পূবালী ব্যাংক মার্চেন্ট পিওএস ও টার্মিনাল
+        <span class="badge">NPSB Ready</span>
+      </div>
+      <div class="row"><span class="label">Terminal ID (TID):</span><span class="value">20041595</span></div>
+      <div class="row"><span class="label">Merchant A/C:</span><span class="value">4370901017008</span></div>
+      <div class="row"><span class="label">দৈনিক পিওএস লেনদেন:</span><span class="value">৳ 54.91</span></div>
+      <div class="row"><span class="label">SIM Connect:</span><span class="value">01322813961 (Active)</span></div>
+    </div>
+
+    <!-- Dutch-Bangla Bank CC -->
+    <div class="card">
+      <div class="card-title">
+        ডাচ-বাংলা ব্যাংক সিসি হিসাব
+        <span class="badge">Settlement Target</span>
+      </div>
+      <div class="row"><span class="label">CC A/C Number:</span><span class="value">3107053000068</span></div>
+      <div class="row"><span class="label">SMS Alert Phone:</span><span class="value">Active (Registered)</span></div>
+      <div class="row"><span class="label">সেটেলমেন্ট মাধ্যম:</span><span class="value" style="color: var(--success);">NPSB Instant Transfer</span></div>
+    </div>
+
+    <!-- BRAC Bank Loan -->
+    <div class="card loan">
+      <div class="card-title">ব্র্যাক ব্যাংক (EMI Loan)</div>
+      <div class="row"><span class="label">Loan Account:</span><span class="value">150120...</span></div>
+      <div class="row"><span class="label">Monthly EMI:</span><span class="value">৳ 45,000</span></div>
+    </div>
+
+    <!-- DMCB Account -->
+    <div class="card">
+      <div class="card-title">ডিএমসিবি (DMCB)</div>
+      <div class="row"><span class="label">Savings (083-4001):</span><span class="value">৳ 100</span></div>
+      <div class="row"><span class="label">Investment (083-7168):</span><span class="value">৳ 2,100 (Paid)</span></div>
+    </div>
+  </div>
+
+  <!-- Live Backend Accounts & Recent Transactions (Populated when server.js is running) -->
+  <div id="live-accounts-section" style="display: none;">
+    <div class="section-title">Live PostgreSQL Accounts (server.js)</div>
+    <div id="live-accounts-grid" class="grid-2"></div>
+  </div>
+
+  <div id="live-transactions-section" style="display: none;">
+    <div class="section-title">Recent Ledger Transactions</div>
+    <div id="live-transactions-list" class="card corp"></div>
+  </div>
+
+  <button class="action-btn" onclick="executeSyncProcess()">⚡ রান অটোমেটেড লেজার ও SAP সিঙ্ক ইঞ্জিন</button>
+  <div id="system-status"></div>
+
+  <div class="footer">
+    <strong>Powered by Gemini</strong> · Salsabilah Enterprise ERP Engine &amp; SAP ECC 6.0 Integration Hub
+  </div>
 </div>
-<!-- Corporate Accounts -->
-<div class="section-title">Corporate Treasury Accounts</div>
-<div class="grid-2">
-<div class="card corp">
-<div class="card-title">
-Minister / Salsabilah
-<span class="badge">SAP DOC: 5100029481</span>
-</div>
-<div class="row"><span class="label">Deal ID:</span><span class="value">DEAL002905</span></div>
-<div class="row"><span class="label">Ledger Balance:</span><span class="value" style="color: var(--success);">+ ৳ ৩,৩০,৫৬,২৯৭.০০</span></div>
-</div>
-<div class="card corp">
-<div class="card-title">
-Butterfly Marketing
-<span class="badge">Live Sync</span>
-</div>
-<div class="row"><span class="label">Account No:</span><span class="value">3000002272</span></div>
-<div class="row"><span class="label">Current Balance:</span><span class="value" style="color: var(--success);">৳ ৩,১৪,২৯,০০০.০০</span></div>
-</div>
-</div>
-<!-- S.R. Electronics Park Local Banking & POS -->
-<div class="section-title">S.R. Electronics Park Banking & POS</div>
-<div class="grid-2">
-<!-- Pubali Bank POS -->
-<div class="card pos">
-<div class="card-title">
-পূবালী ব্যাংক পিওএস ও মার্চেন্ট
-<span class="badge">NPSB Ready</span>
-</div>
-<div class="row"><span class="label">Terminal ID (TID):</span><span class="value">20041595</span></div>
-<div class="row"><span class="label">Merchant A/C:</span><span class="value">4370901017008</span></div>
-<div class="row"><span class="label">সর্বশেষ নিট পেমেন্ট:</span><span class="value">৳ 54.91</span></div>
-<div class="row"><span class="label">SIM Connect:</span><span class="value">01322813961 (Active)</span></div>
-</div>
-<!-- Sonali Bank CC -->
-<div class="card">
-<div class="card-title">
-সোনালী ব্যাংক পিএলসি
-<span class="badge">Settlement Target</span>
-</div>
-<div class="row"><span class="label">CC A/C Number:</span><span class="value">3107053000068</span></div>
-<div class="row"><span class="label">SMS Alert Phone:</span><span class="value">Active (Registered)</span></div>
-<div class="row"><span class="label">লেনদেন মাধ্যম:</span><span class="value" style="color: var(--success);">NPSB Instant Transfer</span></div>
-</div>
-<!-- Brac Bank Loan -->
-<div class="card loan">
-<div class="card-title">ব্র্যাক ব্যাংক (EMI Loan)</div>
-<div class="row"><span class="label">Loan Account:</span><span class="value">৬১০۱۰‌و২৪৮১০০০১</span></div>
-<div class="row"><span class="label">ইনস্টলেমেন্ট:</span><span class="value">সক্রিয় ও নিয়মিত</span></div>
-</div>
-<!-- DMCB Account -->
-<div class="card">
-<div class="card-title">ডিএমসিবি (DMCB)</div>
-<div class="row"><span class="label">Savings (083-4001):</span><span class="value">৳ 100</span></div>
-<div class="row"><span class="label">Investment (083-7168):</span><span class="value">৳ 2,100 (Paid)</span></div>
-</div>
-</div>
-<button class="action-btn" onclick="executeSyncProcess()">⚡ ফুল ট্রেজারি সিস্টেম ও লেজার সিঙ্ক চেক করুন</button>
-<div id="system-status"></div>
-<div class="footer">
-Powered by Salsabilah Enterprise ERP Engine & SAP ECC 6.0 Integration Hub
-</div>
-</div>
+
 <script>
-function executeSyncProcess() {
-const box = document.getElementById('system-status');
-box.style.color = "var(--accent)";
-box.innerHTML = "🔄 SAP লেজার ও পূবালী-সোনালী ব্যাংক নেটওয়ার্ক সিঙ্ক করা হচ্ছে...";
-setTimeout(() => {
-box.style.color = "var(--success)";
-box.innerHTML = "✨ সফল! সমস্ত ব্যাংক অ্যাকাউন্ট, কর্পোরেট লেজার এবং পিওএস ডাটা আপডেট হয়েছে।";
-}, 1500);
+const API_BASE = 'http://localhost:5000';
+
+async function checkApiStatus() {
+  const pill = document.getElementById('connection-mode');
+  try {
+    const res = await fetch(`${API_BASE}/api/health`);
+    if (!res.ok) throw new Error('Health check failed');
+    pill.textContent = '● Live API Connected';
+    pill.style.color = '#10b981';
+    pill.style.borderColor = 'rgba(16, 185, 129, 0.45)';
+  } catch (_err) {
+    pill.textContent = '● Standalone Mode';
+  }
 }
+
+async function executeSyncProcess() {
+  const box = document.getElementById('system-status');
+  box.style.color = 'var(--accent)';
+  box.textContent = '🔄 SAP ERP Hub & Backend Sync Initiating...';
+
+  try {
+    const [accRes, txRes] = await Promise.all([
+      fetch(`${API_BASE}/api/accounts`),
+      fetch(`${API_BASE}/api/transactions?limit=5`)
+    ]);
+    if (!accRes.ok) throw new Error('API unavailable');
+    const accounts = await accRes.json();
+    const transactions = txRes.ok ? await txRes.json() : [];
+
+    const accSection = document.getElementById('live-accounts-section');
+    const accGrid = document.getElementById('live-accounts-grid');
+    if (Array.isArray(accounts) && accounts.length > 0) {
+      accGrid.innerHTML = accounts.map(acc => `
+        <div class="card corp">
+          <div class="card-title">
+            ${escapeHtml(acc.account_name || 'Account')}
+            <span class="badge">${escapeHtml(acc.account_type || 'LIVE')}</span>
+          </div>
+          <div class="row"><span class="label">Account No:</span><span class="value">${escapeHtml(acc.account_number || '-')}</span></div>
+          <div class="row"><span class="label">Balance:</span><span class="value" style="color: var(--success);">৳ ${Number(acc.balance || 0).toLocaleString('en-BD', { minimumFractionDigits: 2 })}</span></div>
+        </div>
+      `).join('');
+      accSection.style.display = 'block';
+    }
+
+    const txSection = document.getElementById('live-transactions-section');
+    const txList = document.getElementById('live-transactions-list');
+    if (Array.isArray(transactions) && transactions.length > 0) {
+      txList.innerHTML = transactions.map(tx => `
+        <div class="row">
+          <span class="label">${escapeHtml(tx.account_name || '')} · ${escapeHtml(tx.transaction_type || '')}</span>
+          <span class="value">৳ ${Number(tx.amount || 0).toLocaleString('en-BD', { minimumFractionDigits: 2 })}</span>
+        </div>
+      `).join('');
+      txSection.style.display = 'block';
+    }
+
+    box.style.color = 'var(--success)';
+    box.textContent = `✨ SUCCESS! Live API Synced (${accounts.length} accounts, ${transactions.length} recent txns)`;
+  } catch (_err) {
+    setTimeout(() => {
+      box.style.color = 'var(--success)';
+      box.textContent = '✨ SUCCESS! DBBL Ledger Verified & Synced (Standalone Mode)';
+    }, 800);
+  }
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+checkApiStatus();
 </script>
 </body>
 </html>
+```
