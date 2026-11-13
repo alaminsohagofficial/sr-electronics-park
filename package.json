@@ -1,0 +1,24 @@
+{
+  "name": "sr-electronics-park",
+  "version": "1.0.0",
+  "description": "S.R. Electronics Park — Unified Treasury & ERP Hub (An Enterprise of Salsabilah Amin Limited)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "sync": "node api_sync.js",
+    "check": "node --check server.js && node --check api_sync.js"
+  },
+  "keywords": [
+    "sr-electronics-park",
+    "salsabilah",
+    "pos",
+    "treasury",
+    "erp"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
+  }
+}
