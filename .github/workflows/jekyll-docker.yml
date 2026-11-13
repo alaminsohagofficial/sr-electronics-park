@@ -37,14 +37,27 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Load PostgreSQL schema
+      - name: Load PostgreSQL schema and seed data
         env:
-          PGPASSWORD: password
-        run: psql -h localhost -U postgres -d sae_pos -f schema.sql
+          DATABASE_URL: postgresql://postgres:password@localhost:5432/sae_pos
+        run: |
+          node -e "
+            const fs = require('fs');
+            const { Pool } = require('pg');
+            (async () => {
+              const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+              await pool.query(fs.readFileSync('schema.sql', 'utf8'));
+              await pool.query(fs.readFileSync('seed.sql', 'utf8'));
+              await pool.end();
+              console.log('Schema and seed loaded successfully');
+            })().catch(err => { console.error(err); process.exit(1); });
+          "
 
       - name: Syntax check backend scripts
         run: npm run check
 
-      - name: Verify ledger sync script
-        run: npm run sync
+      - name: Verify ledger & DB sync
+        env:
+          DATABASE_URL: postgresql://postgres:password@localhost:5432/sae_pos
+        run: node api_sync.js --db
 
